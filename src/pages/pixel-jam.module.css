@@ -1,0 +1,123 @@
+/* ===== Pixel Jam 2026 ===== */
+.pixelJam {
+    background-color: #0a0a0a;
+    background-image: url('../assets/pixel_jam.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center +25%;
+}
+
+.eventHeaderImage {
+    width: clamp(100px, 20vw, 300px);
+    height: auto;
+    object-fit: contain;
+    padding: 80px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.eventInfo {
+    background: rgba(30, 57, 70, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px 60px;
+    border-radius: 8px;
+    border-left: 4px solid #cabfad;
+    width: calc(100% - 80px);
+    max-width: none;
+    margin: 30px 40px;
+    position: relative;
+}
+
+.importantInfo {
+    background: rgba(202, 191, 173, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid #cabfad;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.importantInfo ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.planning {
+    background: rgba(30, 57, 70, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px 60px;
+    border-radius: 8px;
+    border-left: 4px solid #cabfad;
+    width: calc(100% - 80px);
+    max-width: none;
+    margin: 30px 40px;
+    text-align: center;
+}
+
+.planning ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.liens {
+    background: rgba(30, 57, 70, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px 60px;
+    border-radius: 8px;
+    border-left: 4px solid #cabfad;
+    width: calc(100% - 80px);
+    max-width: none;
+    margin: 30px 40px;
+}
+
+.liens .formulaire {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.liens ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .eventInfo,
+    .planning,
+    .liens {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+
+    .importantInfo {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .eventInfo,
+    .planning,
+    .liens {
+        padding: 20px 12px;
+        border-radius: 4px;
+        margin: 20px auto;
+    }
+
+    .importantInfo {
+        padding: 12px;
+        margin-top: 20px;
+    }
+
+    .importantInfo ul {
+        margin-top: 10px;
+    }
+}

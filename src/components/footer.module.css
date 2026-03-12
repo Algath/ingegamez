@@ -1,0 +1,158 @@
+/* ===== Footer ===== */
+.footer {
+    position: relative;
+    background: rgba(20, 30, 40, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 40px 30px 20px;
+    border-top: 2px solid rgba(202, 191, 173, 0.2);
+    margin-top: 40px;
+    color: #cabfad;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-rows: auto auto;
+    gap: 40px;
+    align-items: start;
+}
+
+.footer h2 {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.copyright {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(202, 191, 173, 0.2);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    opacity: 0.8;
+}
+
+.presentation {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+    max-width: 280px;
+}
+
+.logoBrand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.logoBrand a {
+    display: flex;
+    align-items: center;
+}
+
+.logoBrand img {
+    max-width: 80px;
+    height: auto;
+}
+
+.brandName {
+    font-size: clamp(0.95rem, 1.5vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.presentation p {
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.presentation a {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    grid-column: 3;
+    gap: 10px;
+}
+
+.navigation dl {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.navigation dt {
+    display: inline;
+}
+
+.navigation dt a {
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    grid-column: 4;
+    gap: 8px;
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+}
+
+.contact div {
+    line-height: 1.4;
+}
+
+.contact a {
+    margin-top: 10px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+    .footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 35px 25px 15px;
+    }
+    .presentation { grid-column: 1; }
+    .navigation { grid-column: 2; }
+    .contact { grid-column: 1 / -1; }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+    .presentation,
+    .navigation,
+    .contact { grid-column: 1; }
+    .copyright { grid-column: 1; }
+    .footer h2 { font-size: 1rem; }
+}
+
+@media (max-width: 767px) and (min-width: 481px) {
+    .footer { padding: 25px 15px; gap: 15px; }
+    .logoBrand img { max-width: 60px; }
+    .brandName { font-size: 1.1rem; }
+    .footer h2 { font-size: 0.95rem; margin-bottom: 10px; }
+    .presentation p,
+    .navigation dt a,
+    .contact { font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+    .footer { padding: 20px 10px; gap: 15px; }
+    .footer h2 { font-size: 0.85rem; margin-bottom: 8px; letter-spacing: 0px; }
+    .copyright { font-size: 0.75rem; margin-top: 15px; padding-top: 12px; }
+    .logoBrand { gap: 8px; margin-bottom: 12px; }
+    .logoBrand img { max-width: 45px; }
+    .brandName { font-size: 0.95rem; }
+    .presentation p { font-size: 0.8rem; margin-bottom: 10px; }
+    .navigation dt a,
+    .contact { font-size: 0.8rem; }
+}

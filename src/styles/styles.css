@@ -1,0 +1,1277 @@
+/* ===== Global Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #cabfad;
+}
+
+.home {
+    background-color: #0a0a0a;
+    background-image: url('../assets/Mascotte.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center +15%;
+}
+
+a {
+    color: #cabfad;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: clamp(1rem, 3vw, 3.5rem);
+}
+
+/* ===== Header ===== */
+header {
+    position: relative;
+    background: rgba(30, 57, 70, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 15px 30px;
+    border-bottom: 2px solid rgba(202, 191, 173, 0.2);
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+header nav > .logo-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease;
+}
+
+header nav > .logo-brand:hover {
+    transform: scale(1.05);
+}
+
+header nav > .logo-brand a {
+    display: flex;
+    align-items: center;
+}
+
+header nav > .logo-brand img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+header nav > .logo-brand .brand-name {
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+header nav ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+header nav ul li a {
+    font-weight: 500;
+    font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #cabfad;
+    transition: width 0.3s ease;
+}
+
+header nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* ===== Main Content ===== */
+main {
+    min-height: calc(100vh - 200px);
+}
+
+section {
+    position: relative;
+    color: #cabfad;
+    padding: 60px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-overlay {
+    background: rgba(30, 57, 70, 0.92);
+    backdrop-filter: blur(10px);
+    padding: 40px 60px;
+    border-radius: 8px;
+    border-left: 4px solid #cabfad;
+    width: calc(100% - 80px);
+    max-width: none;
+    margin: 20px 40px;
+}
+
+/* Hero Section */
+.hero {
+    padding: 80px 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.hero h1 {
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero h2 {
+    font-size: clamp(1.2rem, 3vw, 2.3rem);
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.hero p {
+    font-size: clamp(0.9rem, 1.5vw, 1.3rem);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Events Section */
+.events-section {
+    background: linear-gradient(135deg, rgba(20, 40, 50, 0.5), rgba(40, 20, 50, 0.5));
+}
+
+.events-section h2 {
+    margin-bottom: 10px;
+}
+
+.event-card {
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.event-link {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: visible;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    gap: 20px;
+}
+
+.event-link:hover {
+    transform: scale(1.02);
+}
+
+.event-link img {
+    width: 100px;
+    height: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.event-title {
+    position: relative;
+    /*padding: 15px 20px;*/
+    font-weight: 600;
+    font-size: clamp(0.95rem, 2vw, 1.5rem);
+    white-space: nowrap;
+}
+
+/* Sponsors Section */
+.sponsors-section {
+    background: linear-gradient(135deg, rgba(40, 20, 50, 0.5), rgba(20, 40, 50, 0.5));
+}
+
+.sponsors-section h2 {
+    margin-bottom: 10px;
+}
+
+.sponsors {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+
+.sponsor-item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 280px;
+    background: rgba(202, 191, 173, 0.05);
+    border-radius: 8px;
+}
+
+.sponsor-item:hover {
+    opacity: 0.9;
+    transform: translateY(-5px);
+    background: rgba(202, 191, 173, 0.1);
+}
+
+.sponsor-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    padding: 10px;
+}
+
+/* Actuality Section */
+.actuality-section {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.news-item {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(202, 191, 173, 0.3);
+}
+
+.news-item h3 {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    margin-bottom: 15px;
+}
+
+.news-item p {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 1.8;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    text-align: justify;
+}
+
+.read-more {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(202, 191, 173, 0.1);
+    border: 1px solid #cabfad;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover {
+    background: #cabfad;
+    color: #1e3946;
+}
+
+/* Gallery Section */
+.gallery-section {
+    background: linear-gradient(135deg, rgba(20, 40, 50, 0.5), rgba(40, 20, 50, 0.5));
+    text-align: center;
+}
+
+.gallery-section p {
+    margin-top: 15px;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    opacity: 0.9;
+}
+
+/* ===== Footer ===== */
+footer {
+    position: relative;
+    background: rgba(20, 30, 40, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 40px 30px 20px;
+    border-top: 2px solid rgba(202, 191, 173, 0.2);
+    margin-top: 40px;
+    color: #cabfad;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-rows: auto auto;
+    gap: 40px;
+    align-items: start;
+}
+
+footer h2 {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+footer > p {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(202, 191, 173, 0.2);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    opacity: 0.8;
+}
+
+.presentation {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+    max-width: 280px;
+}
+
+.logo-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.logo-brand a {
+    display: flex;
+    align-items: center;
+}
+
+.logo-brand img {
+    max-width: 80px;
+    height: auto;
+}
+
+.brand-name {
+    font-size: clamp(0.95rem, 1.5vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.presentation p {
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.presentation a {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+footer .nav {
+    display: flex;
+    flex-direction: column;
+    grid-column: 3;
+    gap: 10px;
+}
+
+footer .nav dl {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+footer .nav dt {
+    display: inline;
+}
+
+footer .nav dt a {
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+}
+
+footer .contact {
+    display: flex;
+    flex-direction: column;
+    grid-column: 4;
+    gap: 8px;
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+}
+
+footer .contact div {
+    line-height: 1.4;
+}
+
+footer .contact a {
+    margin-top: 10px;
+}
+
+/* ===== Responsive Design ===== */
+
+/* Extra Large Screens (1920px and up) */
+@media (min-width: 1920px) {
+    header nav {
+        gap: 50px;
+    }
+    
+    header nav ul {
+        gap: 40px;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero h2 {
+        font-size: 2.3rem;
+    }
+    
+    .hero p {
+        font-size: 1.3rem;
+    }
+    
+    .event-link {
+        gap: 30px;
+    }
+    
+    .event-link img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .event-title {
+        font-size: 2rem;
+    }
+    
+    .sponsor-item {
+        width: 350px;
+        height: 350px;
+    }
+    
+    .sponsors {
+        gap: 60px;
+    }
+    
+    section {
+        padding: 60px 80px;
+    }
+}
+
+/* Large Desktop (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    header nav {
+        gap: 40px;
+    }
+    
+    header nav ul {
+        gap: 30px;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .event-link {
+        gap: 25px;
+    }
+    
+    .sponsor-item {
+        width: 320px;
+        height: 320px;
+    }
+}
+
+/* Desktop (1025px - 1439px) */
+@media (min-width: 1025px) and (max-width: 1439px) {
+    section {
+        padding: 60px 40px;
+    }
+}
+
+/* Tablet Landscape (1024px) */
+@media (max-width: 1024px) {
+    header {
+        padding: 15px 25px;
+    }
+    
+    header nav {
+        gap: 25px;
+    }
+    
+    header nav > .logo-brand img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    header nav ul {
+        gap: 20px;
+    }
+    
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.6rem;
+    }
+    
+    section {
+        padding: 50px 25px;
+    }
+    
+    .content-overlay {
+        padding: 35px;
+        max-width: 900px;
+    }
+    
+    .event-link {
+        gap: 15px;
+    }
+    
+    .event-link img {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .event-title {
+        font-size: 1.3rem;
+    }
+    
+    .sponsor-item {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .sponsors {
+        gap: 30px;
+    }
+    
+    .news-item h3 {
+        font-size: 1.3rem;
+    }
+    
+    footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 35px 25px 15px;
+    }
+    
+    footer .presentation {
+        grid-column: 1;
+    }
+    
+    footer .nav {
+        grid-column: 2;
+    }
+    
+    footer .contact {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 768px) {
+    header {
+        padding: 12px 15px;
+    }
+    
+    header nav {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    header nav > .logo-brand {
+        width: 100%;
+        gap: 12px;
+    }
+    
+    header nav > .logo-brand img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    header nav > .logo-brand .brand-name {
+        font-size: 1.1rem;
+    }
+    
+    header nav ul {
+        gap: 12px;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    header nav ul li a {
+        font-size: 0.9rem;
+    }
+    
+    .hero {
+        padding: 60px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    section {
+        padding: 40px 20px;
+    }
+    
+    .content-overlay {
+        padding: 30px 20px;
+        border-left-width: 3px;
+        max-width: 100%;
+    }
+    
+    .event-card {
+        margin-top: 20px;
+    }
+    
+    .event-link {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    
+    .event-link img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .event-title {
+        font-size: 1.2rem;
+        white-space: normal;
+    }
+    
+    .sponsor-item {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .sponsors {
+        gap: 20px;
+    }
+    
+    .news-item {
+        margin-top: 25px;
+        padding-top: 15px;
+    }
+    
+    .news-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+    
+    .news-item p {
+        font-size: 0.95rem;
+    }
+    
+    footer {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+    
+    footer .presentation,
+    footer .nav,
+    footer .contact {
+        grid-column: 1;
+    }
+    
+    footer > p {
+        grid-column: 1;
+    }
+    
+    footer h2 {
+        font-size: 1rem;
+    }
+    
+    .event-info,
+    .planning,
+    .liens {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+    
+    .important-info {
+        padding: 15px;
+    }
+}
+
+/* Small Tablet / Large Phone (600px - 767px) */
+@media (max-width: 767px) and (min-width: 481px) {
+    header {
+        padding: 10px 12px;
+    }
+    
+    header nav > .logo-brand img {
+        width: 38px;
+        height: 38px;
+    }
+    
+    header nav > .logo-brand .brand-name {
+        font-size: 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero h2 {
+        font-size: 1.2rem;
+    }
+    
+    .hero p {
+        font-size: 0.95rem;
+    }
+    
+    section {
+        padding: 35px 15px;
+    }
+    
+    .content-overlay {
+        padding: 25px 15px;
+        border-left-width: 2px;
+    }
+    
+    .event-link img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .event-title {
+        font-size: 1rem;
+    }
+    
+    .sponsor-item {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .sponsors {
+        gap: 15px;
+    }
+    
+    .news-item h3 {
+        font-size: 1.1rem;
+    }
+    
+    footer {
+        padding: 25px 15px;
+        gap: 15px;
+    }
+    
+    .logo-brand img {
+        max-width: 60px;
+    }
+    
+    .brand-name {
+        font-size: 1.1rem;
+    }
+    
+    footer h2 {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+    
+    footer .presentation p,
+    footer .nav dt a,
+    footer .contact {
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile (481px - 599px) */
+@media (max-width: 599px) and (min-width: 481px) {
+    header {
+        padding: 10px 12px;
+    }
+    
+    header nav > .logo-brand img {
+        width: 36px;
+        height: 36px;
+    }
+    
+    header nav > .logo-brand .brand-name {
+        font-size: 0.95rem;
+    }
+    
+    header nav ul li a {
+        font-size: 0.85rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .hero h2 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
+    
+    section {
+        padding: 30px 12px;
+    }
+    
+    .content-overlay {
+        padding: 20px 15px;
+        border-left-width: 2px;
+    }
+    
+    .event-card {
+        margin-top: 15px;
+    }
+    
+    .event-link {
+        gap: 10px;
+    }
+    
+    .event-link img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .event-title {
+        font-size: 0.95rem;
+    }
+    
+    .sponsor-item {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .sponsor-item img {
+        padding: 8px;
+    }
+    
+    .sponsors {
+        gap: 12px;
+    }
+    
+    .news-item {
+        margin-top: 20px;
+        padding-top: 15px;
+    }
+    
+    .news-item h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .news-item p {
+        font-size: 0.9rem;
+    }
+    
+    footer {
+        padding: 20px 12px;
+        gap: 12px;
+    }
+    
+    .logo-brand img {
+        max-width: 50px;
+    }
+    
+    .brand-name {
+        font-size: 1rem;
+    }
+    
+    footer h2 {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+    
+    footer .presentation p,
+    footer .nav dt a,
+    footer .contact,
+    footer > p {
+        font-size: 0.8rem;
+    }
+    
+    .event-info,
+    .planning,
+    .liens {
+        padding: 20px 15px;
+    }
+}
+
+/* Small Mobile (360px - 480px) */
+@media (max-width: 480px) {
+    * {
+        font-size: 16px;
+    }
+    
+    header {
+        padding: 8px 10px;
+    }
+    
+    header nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    header nav > .logo-brand {
+        gap: 8px;
+    }
+    
+    header nav > .logo-brand img {
+        width: 32px;
+        height: 32px;
+    }
+    
+    header nav > .logo-brand .brand-name {
+        font-size: 0.9rem;
+    }
+    
+    header nav ul {
+        gap: 8px;
+        flex-direction: column;
+    }
+    
+    header nav ul li a {
+        font-size: 0.8rem;
+    }
+    
+    .hero {
+        padding: 30px 10px;
+    }
+    
+    .hero h1 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+        letter-spacing: 0px;
+    }
+    
+    .hero h2 {
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+    
+    .hero p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+    
+    main {
+        min-height: calc(100vh - 150px);
+    }
+    
+    section {
+        padding: 25px 10px;
+    }
+    
+    .content-overlay {
+        padding: 15px 12px;
+        border-left-width: 2px;
+        border-radius: 4px;
+    }
+    
+    .event-card {
+        margin-top: 12px;
+    }
+    
+    .event-link {
+        gap: 8px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .event-link img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .event-title {
+        font-size: 0.9rem;
+        white-space: normal;
+        display: block;
+    }
+    
+    .sponsor-item {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .sponsor-item img {
+        padding: 5px;
+    }
+    
+    .sponsors {
+        gap: 10px;
+    }
+    
+    .news-item {
+        margin-top: 15px;
+        padding-top: 12px;
+    }
+    
+    .news-item h3 {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+    
+    .news-item p {
+        font-size: 0.85rem;
+        text-align: left;
+    }
+    
+    .read-more {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+    
+    footer {
+        grid-template-columns: 1fr;
+        padding: 20px 10px;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    footer h2 {
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+        letter-spacing: 0px;
+    }
+    
+    footer > p {
+        font-size: 0.75rem;
+        margin-top: 15px;
+        padding-top: 12px;
+    }
+    
+    .logo-brand {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .logo-brand img {
+        max-width: 45px;
+    }
+    
+    .brand-name {
+        font-size: 0.95rem;
+    }
+    
+    .presentation p {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+    
+    footer .nav dt a,
+    footer .contact {
+        font-size: 0.8rem;
+    }
+    
+    .event-info,
+    .planning,
+    .liens {
+        padding: 20px 12px;
+        border-radius: 4px;
+        margin: 20px auto;
+    }
+    
+    .important-info {
+        padding: 12px;
+        margin-top: 20px;
+    }
+    
+    .important-info ul {
+        margin-top: 10px;
+    }
+}
+
+/* Extra Small Mobile (320px - 359px) */
+@media (max-width: 359px) {
+    header nav > .logo-brand img {
+        width: 28px;
+        height: 28px;
+    }
+    
+    header nav > .logo-brand .brand-name {
+        font-size: 0.85rem;
+    }
+    
+    header nav ul li a {
+        font-size: 0.75rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.2rem;
+    }
+    
+    .hero h2 {
+        font-size: 0.95rem;
+    }
+    
+    .hero p {
+        font-size: 0.8rem;
+    }
+    
+    section {
+        padding: 20px 8px;
+    }
+    
+    .content-overlay {
+        padding: 12px 10px;
+    }
+    
+    .event-link img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .event-title {
+        font-size: 0.85rem;
+    }
+    
+    .sponsor-item {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .sponsors {
+        gap: 8px;
+    }
+    
+    .news-item h3 {
+        font-size: 0.9rem;
+    }
+    
+    .news-item p {
+        font-size: 0.8rem;
+    }
+}
+
+/* == Pixel Jam 2026 Specific Styles == */
+.pixel-jam-2026 {
+    background-color: #0a0a0a;
+    background-image: url('../assets/pixel_jam.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center +25%;
+}
+
+.pixel-jam-2026 .event-header-image {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 20px 40px;
+    display: block;
+}
+
+.event-info {
+    background: rgba(30, 57, 70, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px 60px;
+    border-radius: 8px;
+    border-left: 4px solid #cabfad;
+    width: calc(100% - 80px);
+    max-width: none;
+    margin: 30px 40px;
+    position: relative;
+}
+
+.important-info {
+    background: rgba(202, 191, 173, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid #cabfad;
+    margin-top: 30px;
+    position: center;
+    text-align: center;
+}
+
+.important-info ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.planning {
+    background: rgba(30, 57, 70, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px 60px;
+    border-radius: 8px;
+    border-left: 4px solid #cabfad;
+    width: calc(100% - 80px);
+    max-width: none;
+    margin: 30px 40px;
+    text-align: center;
+}
+
+.planning ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.liens {
+    background: rgba(30, 57, 70, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px 60px;
+    border-radius: 8px;
+    border-left: 4px solid #cabfad;
+    width: calc(100% - 80px);
+    max-width: none;
+    margin: 30px 40px;
+}
+.liens .formulaire {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    text-align: center;
+    position: center;
+}
+.liens ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
