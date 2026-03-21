@@ -1,7 +1,7 @@
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 import styles from './pixel-jam.module.css'
-import pixelJam from '../assets/pixel_jam_2026.png'
+import pixelJam from '../assets/pixel_jam/pixel_jam_2026.png'
 import homeStyles from './home.module.css'
 
 function PixelJam () {

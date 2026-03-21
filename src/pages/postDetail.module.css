@@ -1,0 +1,166 @@
+.postDetail {
+  background-color: #0a0a0a;
+  background-image: url('../assets/Mascotte.png');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center +25%;
+  min-height: 100vh;
+}
+
+main {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.backButton {
+  background: rgba(202, 191, 173, 0.1);
+  border: 1px solid rgba(202, 191, 173, 0.3);
+  color: #cabfad;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  background: rgba(202, 191, 173, 0.2);
+  border-color: rgba(202, 191, 173, 0.5);
+}
+
+.article {
+  background: rgba(30, 30, 30, 0.95);
+  border: 1px solid rgba(202, 191, 173, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.header {
+  padding: 40px;
+  border-bottom: 1px solid rgba(202, 191, 173, 0.2);
+}
+
+.category {
+  display: inline-block;
+  color: #cabfad;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.title {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 15px 0;
+  line-height: 1.3;
+}
+
+.meta {
+  display: flex;
+  gap: 25px;
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #999;
+}
+
+.author {
+  color: #cabfad;
+  font-weight: 500;
+}
+
+.date {
+  color: #666;
+}
+
+.imageWrapper {
+  width: 100%;
+  max-height: 500px;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.5);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  padding: 40px;
+  color: #ccc;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.content p {
+  margin: 0 0 20px 0;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.error {
+  text-align: center;
+  padding: 60px 20px;
+  color: #ccc;
+}
+
+.error h1 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.error p {
+  margin-bottom: 30px;
+  color: #999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  main {
+    padding: 20px 15px;
+  }
+
+  .header {
+    padding: 25px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .content {
+    padding: 25px;
+  }
+
+  .imageWrapper {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .content {
+    padding: 15px;
+    font-size: 1rem;
+  }
+}

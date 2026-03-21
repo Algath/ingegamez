@@ -1,10 +1,31 @@
 /* ===== Pixel Jam 2026 ===== */
-.pixelJam {
+.actuality {
     background-color: #0a0a0a;
-    background-image: url('../assets/pixel_jam/pixel_jam.png');
+    background-image: url('../assets/Mascotte.png');
     background-attachment: fixed;
     background-size: cover;
     background-position: center +25%;
+}
+
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+main h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #cabfad;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.postsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    justify-items: stretch;
 }
 
 .eventHeaderImage {

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 import styles from './home.module.css'
-import pixelJam from '../assets/pixel_jam.png'
-import isc from '../assets/ISC.png'
-import maitre_du_jeux from '../assets/le_maitre_du_jeux.png'
+import pixelJam from '../assets/pixel_jam/pixel_jam.png'
+import isc from '../assets/sponso/ISC.png'
+import maitre_du_jeux from '../assets/sponso/le_maitre_du_jeux.png'
 
 function Home () {
     return (
