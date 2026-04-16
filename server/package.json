@@ -1,0 +1,21 @@
+{
+  "name": "ingegamez-server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "mongo": "docker start ingegamez-mongo 2>/dev/null || docker run -d --name ingegamez-mongo --restart unless-stopped -p 27017:27017 -v mongo-data:/data/db mongo:7",
+    "dev": "npm run mongo && node --watch index.js",
+    "start": "npm run mongo && node index.js"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.0",
+    "@as-integrations/express4": "^1.1.2",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "graphql": "^16.9.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.7.0"
+  }
+}

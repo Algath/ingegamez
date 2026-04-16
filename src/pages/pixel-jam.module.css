@@ -73,6 +73,7 @@
     width: calc(100% - 80px);
     max-width: none;
     margin: 30px 40px;
+    text-align: center;
 }
 
 .liens .formulaire {

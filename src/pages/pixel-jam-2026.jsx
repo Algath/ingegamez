@@ -28,13 +28,20 @@ function PixelJam () {
                         Un thème est choisi chaque année pour guider la création des jeux. Et pour cette année, nous apportons un nouveau défi 
                 avec une contrainte technique supplémentaire!
                     </p>
-                    <br />
                     <section className={`${styles.importantInfo} ${homeStyles.contentOverlay}`}>
                         <h2>Infos importantes</h2>
                         <p>Date: 21-22 mars 2026</p>
                         <p>Nombre de personne par équipe : 2 à 4</p>
-                        <p>Tarifs:</p>
+                        <br />
+                        <h3>Thème: Let Their be Chaos</h3>
                         <ul>
+                            <li>Contraintes techniques:</li>
+                            <li><b>Contrainte 1:</b> Seul 5 couleurs + le noir et blanc peuvent être utilisé.</li>
+                            <li><b>Contrainte 2:</b> Minimum 30 touches du clavier doivent être utilisées.</li>
+                        </ul>
+                        <p></p>
+                        <ul>
+                            <li>Tarifs:</li>
                             <li>Inscription: <b>20 CHF</b></li>
                             <li>Inscription + T-shirt: <b>30 CHF</b></li>
                             <li>T-Shirt: <b>15 CHF</b></li>
@@ -70,8 +77,8 @@ function PixelJam () {
                     <p>Vous retrouverez également une coop à côté du bâtiment pour la journée de samedi et des snacks + boissons seront mis à disposition.</p>
                 </section>
                 <section className={`${styles.liens} ${homeStyles.contentOverlay}`}>
-                    <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAM0PqP1UM0xSOUFXNEM2N1ZKSzBBUkFBSDI4Q1hZUS4u" className={styles.formulaire}><h1>Formulaire</h1></a>
-                    <br/>
+                    {/* <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAM0PqP1UM0xSOUFXNEM2N1ZKSzBBUkFBSDI4Q1hZUS4u" className={styles.formulaire}><h1>Formulaire</h1></a>
+                    <br/> */}
                     <h2>Liens utiles</h2>
                     <ul>
                         <li><a href="https://discord.gg/NakSqWHGTQ">Serveur Discord d'IngéGamEZ</a></li>
