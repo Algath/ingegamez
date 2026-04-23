@@ -8,6 +8,9 @@ import Actuality from './pages/actuality'
 import PostDetail from './pages/PostDetail'
 import Contact from './pages/contact'
 /*import Gallery from './pages/gallery' */
+import Admin from './pages/admin'
+import Events from './pages/admin/events'
+import News from './pages/admin/news'
 import './styles/global.css'
 
 createRoot(document.getElementById('root')).render(
@@ -21,6 +24,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/post/:slug" element={<PostDetail />} />
         <Route path="/contact" element={<Contact />} />
         {/*<Route path="/gallery" element={<Gallery />} */ }
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/events" element={<Events />} />
+        <Route path="/admin/news" element={<News />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

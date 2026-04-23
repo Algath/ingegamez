@@ -1,0 +1,69 @@
+.events {
+    background-color: #0a0a0a;
+    background-image: url('../../assets/Mascotte.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center +15%;
+}
+
+.eventsSection {
+    background: var(--color-overlay);
+    backdrop-filter: var(--backdrop-filter);
+    padding: 40px clamp(20px, 4vw, 60px);
+    border-radius: var(--border-radius);
+    border-left: var(--border-accent);
+    margin: 20px clamp(20px, 5vw, 80px); /* ← marge gauche/droite adaptive */
+}
+
+.eventsSection p {
+    margin-top: 10px;
+    font-size: large;
+}
+
+.eventsList {
+    background: var(--color-overlay);
+    backdrop-filter: var(--backdrop-filter);
+    padding: 40px clamp(20px, 4vw, 60px);
+    border-radius: var(--border-radius);
+    border-left: var(--border-accent);
+    margin: 20px clamp(20px, 5vw, 80px); /* ← marge gauche/droite adaptive */
+}
+
+.calendar {
+    margin-top: 30px;
+}
+
+.addEvent {
+    background: var(--color-overlay);
+    backdrop-filter: var(--backdrop-filter);
+    padding: 40px clamp(20px, 4vw, 60px);
+    border-radius: var(--border-radius);
+    border-left: var(--border-accent);
+    margin: 20px clamp(20px, 5vw, 80px); /* ← marge gauche/droite adaptive */
+}
+
+.addEvent form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.addEvent form input, textarea, button {
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.inputRow {
+    display: flex;
+    gap: 16px;
+}
+
+.inputRow input {
+    flex: 1;
+}

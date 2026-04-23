@@ -12,5 +12,6 @@
     padding: 40px clamp(20px, 4vw, 60px);
     border-radius: var(--border-radius);
     border-left: var(--border-accent);
-    margin: 20px clamp(20px, 5vw, 80px); /* ← marge gauche/droite adaptive */
+    margin: 20px auto;
+    max-width: 800px;
 }
