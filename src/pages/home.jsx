@@ -1,11 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Carousel from 'react-material-ui-carousel';
+import { Paper } from '@mui/material';
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 import styles from './home.module.css'
 import pixelJam from '../assets/pixel_jam/pixel_jam.png'
 import isc from '../assets/sponso/ISC.png'
 import maitre_du_jeux from '../assets/sponso/le_maitre_du_jeux.png'
+import christmas from '../assets/posts/christmas.png'
+import crackList from '../assets/posts/crack_list.png'
+import discord from '../assets/posts/discord.png'
+import endSaison from '../assets/posts/end_saison.png'
+import tsuro from '../assets/posts/tsuro.png'
+
+// Placeholder — sera remplacé par des données du backend
+const galleryItems = [
+    { src: christmas,  caption: 'Soirée de Noël' },
+    { src: crackList,  caption: 'Crack List' },
+    { src: discord,    caption: 'Discord' },
+    { src: endSaison,  caption: 'Fin de saison' },
+    { src: tsuro,      caption: 'Tsuro' },
+];
+
+function GalleryItem({ item }) {
+    return (
+        <Paper elevation={0} className={styles.carouselItem}>
+            <img src={item.src} alt={item.caption} className={styles.carouselImage} />
+            <p className={styles.carouselCaption}>{item.caption}</p>
+        </Paper>
+    );
+}
 
 function Home () {
     return (
@@ -38,6 +63,11 @@ function Home () {
                     <div className={styles.contentOverlay}>
                         <h2>Galerie</h2>
                         <p>Découvrez les moments forts de nos événements</p>
+                        <Carousel>
+                            {galleryItems.map((item, i) => (
+                                <GalleryItem key={i} item={item} />
+                            ))}
+                        </Carousel>
                     </div>
                 </section>
 

@@ -1,0 +1,51 @@
+.news {
+    background-color: #0a0a0a;
+    background-image: url('../../assets/Mascotte.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center +15%;
+}
+
+.newsSection {
+    background: var(--color-overlay);
+    backdrop-filter: var(--backdrop-filter);
+    padding: 40px clamp(20px, 4vw, 60px);
+    border-radius: var(--border-radius);
+    border-left: var(--border-accent);
+    margin: 20px clamp(20px, 5vw, 80px); /* ← marge gauche/droite adaptive */
+}
+
+.addNews {
+    background: var(--color-overlay);
+    backdrop-filter: var(--backdrop-filter);
+    padding: 40px clamp(20px, 4vw, 60px);
+    border-radius: var(--border-radius);
+    border-left: var(--border-accent);
+    margin: 20px clamp(20px, 5vw, 80px); /* ← marge gauche/droite adaptive */
+}
+
+.addNews form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.addNews form input, textarea, button {
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.newsList {
+    background: var(--color-overlay);
+    backdrop-filter: var(--backdrop-filter);
+    padding: 40px clamp(20px, 4vw, 60px);
+    border-radius: var(--border-radius);
+    border-left: var(--border-accent);
+    margin: 20px clamp(20px, 5vw, 80px); /* ← marge gauche/droite adaptive */
+}

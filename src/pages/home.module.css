@@ -111,6 +111,30 @@
     opacity: 0.9;
 }
 
+.carouselItem {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 20px 0;
+}
+
+.carouselImage {
+    max-height: 420px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.carouselCaption {
+    margin-top: 12px;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    opacity: 0.8;
+    text-align: center;
+}
+
 /* Actuality */
 /* .actualitySection {
     background: linear-gradient(135deg, rgba(20, 40, 50, 0.5), rgba(40, 20, 50, 0.5));

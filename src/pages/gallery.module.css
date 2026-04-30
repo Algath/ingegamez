@@ -1,0 +1,68 @@
+.gallery {
+    background-color: #0a0a0a;
+    background-image: url('../assets/Mascotte.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center +15%;
+}
+
+.gallerySection {
+    background: var(--color-overlay);
+    backdrop-filter: var(--backdrop-filter);
+    padding: 40px clamp(20px, 4vw, 60px);
+    border-radius: var(--border-radius);
+    border-left: var(--border-accent);
+    margin: 20px clamp(20px, 5vw, 80px);
+    color: #fff;
+}
+
+.galleryContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.galleryYear {
+    border: 1px solid #333;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.galleryEvent {
+    border-top: 1px solid #222;
+}
+
+.toggle {
+    width: 100%;
+    text-align: left;
+    background: var(--color-overlay);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s;
+}
+
+.toggle:hover {
+    background: rgba(19, 37, 45, 0.92);
+}
+
+.toggleYear {
+    background: var(--color-overlay);
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+.toggleIcon {
+    font-size: 0.7rem;
+}
+
+.content {
+    padding: 1rem;
+    background: var(--color-overlay);
+}
