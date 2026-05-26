@@ -15,6 +15,7 @@ function Navigation() {
                     <li><Link to="/pixel-lan-2025">Pixel_Lan</Link></li>
                     <li><Link to="/actuality">Actualités</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/register">Register</Link></li>
                 </ul>
             </nav>
         </header>

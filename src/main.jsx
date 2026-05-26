@@ -13,6 +13,7 @@ import Events from './pages/admin/events'
 import News from './pages/admin/news'
 import GalerieAdmin from './pages/admin/galerie'
 import Login from './pages/admin/login'
+import Register from './pages/register'
 import './styles/global.css'
 
 createRoot(document.getElementById('root')).render(
@@ -31,6 +32,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/admin/news" element={<News />} />
         <Route path="/admin/galerie" element={<GalerieAdmin />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

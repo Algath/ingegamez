@@ -19,6 +19,8 @@ function Admin() {
                         <Link to="/admin/news" className={styles.adminLink}>Manage News</Link>
                         <Link to="/admin/galerie" className={styles.adminLink}>Manage Galerie</Link>
                     </div>
+                    <br />
+                    <button className={styles.logoutButton}>Logout</button>
                 </section>
             </main>
             <Footer />

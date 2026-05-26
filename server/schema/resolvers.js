@@ -1,6 +1,8 @@
 import Post from '../models/Post.js';
 import User from '../models/User.js';
+import Game from '../models/Game.js';
 import { signToken, requireAdmin } from '../middleware/auth.js';
+import { fetchGameByName } from '../services/bgg.js';
 
 export const resolvers = {
   Query: {
@@ -16,13 +18,32 @@ export const resolvers = {
       return await Post.find({ category }).sort({ createdAt: -1 });
     },
 
-    // Renvoie le username si le token est valide, utile pour vérifier une session
-    me: (_, __, context) => {
-      return context.user ? context.user.username : null;
+    me: async (_, __, context) => {
+      if (!context.user) return null;
+      return await User.findById(context.user.id).select('-password');
     },
+
+    games: async () => await Game.find().sort({ name: 1 }),
+    game: async (_, { bggId }) => await Game.findOne({ bggId }),
   },
 
   Mutation: {
+    register: async (_, { username, email, nom, prenom, password }) => {
+      const emailNorm = email.toLowerCase();
+
+      const existingEmail = await User.findOne({ email: emailNorm });
+      if (existingEmail) throw new Error('Un compte avec cet email existe déjà');
+
+      const existingUsername = await User.findOne({ username });
+      if (existingUsername) throw new Error('Ce nom d\'utilisateur est déjà pris');
+
+      const user = new User({ username, email: emailNorm, nom, prenom, password, role: 'member' });
+      await user.save();
+
+      const token = signToken({ id: user._id, username: user.username, role: user.role });
+      return { token, username: user.username, role: user.role };
+    },
+
     login: async (_, { username, password }) => {
       const user = await User.findOne({ username });
       if (!user) throw new Error('Identifiants invalides');
@@ -31,7 +52,7 @@ export const resolvers = {
       if (!valid) throw new Error('Identifiants invalides');
 
       const token = signToken({ id: user._id, username: user.username, role: user.role });
-      return { token, username: user.username };
+      return { token, username: user.username, role: user.role };
     },
 
     createPost: async (_, args, context) => {
@@ -49,6 +70,16 @@ export const resolvers = {
       requireAdmin(context);
       const result = await Post.findByIdAndDelete(id);
       return result !== null;
+    },
+
+    importGame: async (_, { name }, context) => {
+      requireAdmin(context);
+      const data = await fetchGameByName(name);
+      return await Game.findOneAndUpdate(
+        { bggId: data.bggId },
+        { $set: data },
+        { upsert: true, new: true }
+      );
     },
   },
 };

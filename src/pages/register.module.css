@@ -1,4 +1,4 @@
-.admin {
+.register {
     background-color: #0a0a0a;
     background-image: url('../assets/Mascotte.png');
     background-attachment: fixed;
@@ -6,7 +6,7 @@
     background-position: center +15%;
 }
 
-.adminSection {
+.registerSection {
     background: var(--color-overlay);
     backdrop-filter: var(--backdrop-filter);
     padding: 40px clamp(20px, 4vw, 60px);
@@ -15,19 +15,24 @@
     margin: 20px clamp(20px, 5vw, 80px); /* ← marge gauche/droite adaptive */
 }
 
-.adminLinks {
-    background: var(--color-overlay);
-    backdrop-filter: var(--backdrop-filter);
-    padding: 40px clamp(20px, 4vw, 60px);
-    border-radius: var(--border-radius);
-    border-left: var(--border-accent);
-    margin: 20px clamp(20px, 5vw, 80px);
+.registerForm {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    font-size: 1rem;
 }
 
-.logoutButton {
+.registerForm input, textarea, button {
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.registerButton {
     background: var(--color-overlay);
     color: #fff;
     border: var(--color-text) 2px solid;
@@ -36,6 +41,11 @@
     transition: opacity 0.2s;
 }
 
-.logoutButton:hover {
+.registerButton:hover {
     opacity: 0.85;
+}
+
+.error {
+    color: #f87171;
+    font-size: 0.9rem;
 }

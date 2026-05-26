@@ -7,6 +7,9 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ingegamez'
 // Modifie ces valeurs avant de lancer
 const USERNAME = 'admin';
 const PASSWORD = 'changeme';
+const EMAIL    = 'admin@ingegamez.ch';
+const NOM      = 'Admin';
+const PRENOM   = 'IngéGamEZ';
 
 async function createAdmin() {
   await mongoose.connect(MONGO_URI);
@@ -18,7 +21,7 @@ async function createAdmin() {
     return;
   }
 
-  const user = new User({ username: USERNAME, password: PASSWORD, role: 'admin' });
+  const user = new User({ username: USERNAME, password: PASSWORD, email: EMAIL, nom: NOM, prenom: PRENOM, role: 'admin' });
   await user.save();
   console.log(`Admin "${USERNAME}" créé avec succès.`);
 

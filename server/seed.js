@@ -56,12 +56,14 @@ async function seed() {
   await mongoose.connect(MONGO_URI);
   console.log('MongoDB connecté');
 
-  await Post.deleteMany({});
-  console.log('Collection posts vidée');
-
-  const inserted = await Post.insertMany(posts);
-  console.log(`${inserted.length} posts insérés :`);
-  inserted.forEach((p) => console.log(` - [${p.category}] ${p.title}`));
+  for (const post of posts) {
+    await Post.findOneAndUpdate(
+      { slug: post.slug },
+      { $set: post },
+      { upsert: true, new: true }
+    );
+    console.log(`Post "${post.title}" inséré ou mis à jour`);
+  }
 
   await mongoose.disconnect();
   console.log('Terminé.');
