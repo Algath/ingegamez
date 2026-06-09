@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 const LOGIN = gql`
     mutation login($username: String!, $password: String!) {
         login(username: $username, password: $password) {
-            token
             username
             role
         }
@@ -35,7 +34,6 @@ function Login() {
         e.preventDefault();
         try {
             const { data } = await loginUser({ variables: form });
-            localStorage.setItem(`token`, data.login.token);
             localStorage.setItem(`role`, data.login.role);
             navigate('/admin');
         } catch (err) {

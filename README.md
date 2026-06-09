@@ -166,7 +166,7 @@ Suivi des exigences FSWD 2026.
   - [X] URI stockée dans `server/.env`
   - [X] `server/.env` ignoré par git (via `server/.gitignore`)
 - [X] **6.2** Logique d'upsert pour éviter les doublons
-- [ ] **6.3** Collections contrôlées par **Simple-Schema** *(A utiliser avec GraphQL)*
+- [X] **6.3** Collections contrôlées par **Simple-Schema** *(A utiliser avec GraphQL)*
 
 ### Étape 7 — Authentification
 
@@ -178,9 +178,9 @@ Suivi des exigences FSWD 2026.
   - [X] Connexion admin fonctionnelle *(mutation `login`, bcrypt, JWT)*
 - [X] **7.2** Interface adaptée à l'état de connexion (login minimal vs. app complète)
 - [X] **7.3** Déconnexion avec retour automatique à la page de login
-- [ ] **7.4** Authentification via **passport.js** *(JWT custom direct actuellement — passport non installé)*
-  - [ ] Toutes les routes qui doivent l'être protégées via passport
-- [ ] **7.5** Sécurité — token dans un **cookie HttpOnly** *(actuellement retourné dans le payload GraphQL et stocké manuellement)*
+- [X] **7.4** Authentification via **passport.js** *(JWT custom direct actuellement — passport non installé)*
+  - [X] Toutes les routes qui doivent l'être protégées via passport
+- [X] **7.5** Sécurité — token dans un **cookie HttpOnly** *(actuellement retourné dans le payload GraphQL et stocké manuellement)*
 
 ### Étape 8 — GraphQL
 
@@ -200,8 +200,8 @@ Suivi des exigences FSWD 2026.
 
 ### Étape 10 — Tests automatisés
 
-- [ ] **10.1** Jest et supertest installés en dépendances de développement
-  - [ ] `jest.config.js` configuré
-  - [ ] Script `test` dans `package.json`
-- [ ] **10.2** Au moins 2 tests unitaires pertinents (tous passants)
-- [ ] **10.3** Au moins 2 tests d'intégration pertinents (tous passants)
+- [X] **10.1** Jest et supertest installés en dépendances de développement
+  - [X] `jest.config.js` configuré
+  - [X] Script `test` dans `package.json`
+- [X] **10.2** Au moins 2 tests unitaires pertinents (tous passants)
+- [X] **10.3** Au moins 2 tests d'intégration pertinents (tous passants)

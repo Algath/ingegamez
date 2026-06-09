@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 const REGISTER = gql`
     mutation Register($username: String!, $email: String!, $nom: String!, $prenom: String!, $password: String!) {
         register(username: $username, email: $email, nom: $nom, prenom: $prenom, password: $password) {
-            token
             username
             role
         }
@@ -37,7 +36,6 @@ function Register() {
         e.preventDefault();
         try {
             const { data } = await registerUser({ variables: form });
-            localStorage.setItem(`token`, data.register.token);
             localStorage.setItem(`role`, data.register.role);
             navigate('/');
         } catch (err) {

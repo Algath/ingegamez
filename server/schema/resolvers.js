@@ -33,7 +33,7 @@ export const resolvers = {
   },
 
   Mutation: {
-    register: async (_, { username, email, nom, prenom, password }) => {
+    register: async (_, { username, email, nom, prenom, password }, context) => {
       const emailNorm = email.toLowerCase();
 
       const existingEmail = await User.findOne({ email: emailNorm });
@@ -46,10 +46,16 @@ export const resolvers = {
       await user.save();
 
       const token = signToken({ id: user._id, username: user.username, role: user.role });
-      return { token, username: user.username, role: user.role };
+      context.res.cookie('token', token, {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: false,
+        maxAge: 15 * 24 * 60 * 60 * 1000, // 15 jours
+      });
+      return { username: user.username, role: user.role };
     },
 
-    login: async (_, { username, password }) => {
+    login: async (_, { username, password }, context) => {
       const user = await User.findOne({ username });
       if (!user) throw new Error('Identifiants invalides');
 
@@ -57,7 +63,18 @@ export const resolvers = {
       if (!valid) throw new Error('Identifiants invalides');
 
       const token = signToken({ id: user._id, username: user.username, role: user.role });
-      return { token, username: user.username, role: user.role };
+      context.res.cookie('token', token, {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: false,
+        maxAge: 15 * 24 * 60 * 60 * 1000, // 15 jours
+      });
+      return { username: user.username, role: user.role };
+    },
+    
+    logout: async (_, __, context) => {
+      context.res.clearCookie('token');
+      return true;
     },
 
     createPost: async (_, args, context) => {

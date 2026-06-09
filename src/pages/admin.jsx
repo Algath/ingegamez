@@ -4,12 +4,21 @@ import Navigation from "../components/navigation";
 import Footer from "../components/footer";
 import styles from "./admin.module.css";
 import { useNavigate } from 'react-router-dom';
+import { gql } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 
+const LOGOUT = gql`
+    mutation Logout {
+        logout
+    }
+`;
 
 function Admin() {
     const navigate = useNavigate();
-    function handleLogout() {
-        localStorage.removeItem('token');
+    const [logout] = useMutation(LOGOUT);
+
+    async function handleLogout() {
+        await logout();
         localStorage.removeItem('role');
         navigate('/login');
     }

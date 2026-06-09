@@ -3,16 +3,25 @@ import styles from './navigation.module.css'
 import logo from '../assets/Mascotte.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { useBreakpoints } from '../hooks/useBreakpoints';
+import { gql } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
+
+const LOGOUT = gql`
+    mutation Logout {
+        logout
+    }
+`;
 
 function Navigation() {
     const { isTouch } = useBreakpoints();
     const [open, setOpen] = useState(false);
     const isAdmin = localStorage.getItem('role') === 'admin';
-    const isLoggedIn = !!localStorage.getItem('token');
+    const isLoggedIn = !!localStorage.getItem('role');
     const navigate = useNavigate();
+    const [logout] = useMutation(LOGOUT);
 
-    function handleLogout() {
-        localStorage.removeItem('token');
+    async function handleLogout() {
+        await logout();
         localStorage.removeItem('role');
         navigate('/');
     }
@@ -41,11 +50,13 @@ function Navigation() {
                         <li><Link to="/pixel-jam-2026">Pixel Jam</Link></li>
                         <li><Link to="/pixel-lan-2025">Pixel_Lan</Link></li>
                         <li><Link to="/actuality">Actualités</Link></li>
-                        <li><Link to="/games">Jeux</Link></li>
                         <li><Link to="/gallery">Galerie</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                         {isAdmin && (
+                            <>
+                            <li><Link to="/games">Jeux</Link></li>
                             <li><Link to="/admin">Admin</Link></li>
+                            </>
                         )}
                         {!isLoggedIn && (
                             <>
