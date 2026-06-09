@@ -18,9 +18,12 @@ function Admin() {
     const [logout] = useMutation(LOGOUT);
 
     async function handleLogout() {
-        await logout();
-        localStorage.removeItem('role');
-        navigate('/login');
+        try {
+            await logout();
+        } finally {
+            localStorage.removeItem('role');
+            navigate('/login');
+        }
     }
     return (
         <div className={styles.admin}>

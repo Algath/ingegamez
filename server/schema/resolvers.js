@@ -50,7 +50,7 @@ export const resolvers = {
         httpOnly: true,
         sameSite: 'lax',
         secure: false,
-        maxAge: 15 * 24 * 60 * 60 * 1000, // 15 jours
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 jours
       });
       return { username: user.username, role: user.role };
     },
@@ -67,7 +67,7 @@ export const resolvers = {
         httpOnly: true,
         sameSite: 'lax',
         secure: false,
-        maxAge: 15 * 24 * 60 * 60 * 1000, // 15 jours
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 jours
       });
       return { username: user.username, role: user.role };
     },

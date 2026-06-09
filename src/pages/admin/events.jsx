@@ -64,7 +64,7 @@ function Events() {
         try {
             const fd = new FormData();
             fd.append('image', file);
-            const res = await fetch(`${API_URL}/upload`, { method: 'POST', body: fd });
+            const res = await fetch(`${API_URL}/upload`, { method: 'POST', body: fd, credentials:'include' });
             const data = await res.json();
             setForm((f) => ({...f, logo: data.url }))
         } catch (err) {

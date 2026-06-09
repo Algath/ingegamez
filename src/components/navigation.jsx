@@ -21,9 +21,12 @@ function Navigation() {
     const [logout] = useMutation(LOGOUT);
 
     async function handleLogout() {
-        await logout();
-        localStorage.removeItem('role');
-        navigate('/');
+        try{
+            await logout();
+        } finally {
+            localStorage.removeItem('role');
+            navigate('/');
+        }
     }
     return (
         <header className={styles.header}>
