@@ -23,7 +23,7 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ingegamez'
 async function start() {
   // Connect to MongoDB
   await mongoose.connect(MONGO_URI);
-  console.log('MongoDB connecté :', MONGO_URI);
+  console.log('MongoDB connecté :');
 
   const app = await createApp();
 

@@ -17,42 +17,65 @@ La plateforme web permet à la communauté de :
 
 - 📅 **Actualités** : Blog des dernières nouvelles et mises à jour
 - 🎪 **Événements** : Informations détaillées sur Pixel Jam et Pixel LAN
-- 🖼️ **Galerie** : Photographies et vidéos des événements passés
-- 📧 **Contact** : Formulaire pour communiquer avec l'équipe
+- 🖼️ **Galerie** : Photographies des événements passés
+- 🎲 **Jeux** : Catalogue de jeux de société (données importées depuis BoardGameGeek)
+- 📧 **Contact** : Formulaire et carte pour communiquer avec l'équipe
+- 🔐 **Espace admin** : Gestion des actualités, événements, galerie et jeux
 - 📱 **Design Responsive** : Adapté à tous les appareils
 
 ## 📁 Structure du Projet
 
+Monorepo : le **front-end** React (Vite) est à la racine, le **back-end** Node/Express dans `server/`.
+
 ```
 ingegamez/
-├── src/
-│   ├── components/          # Composants réutilisables
-│   │   ├── footer.jsx       # Pied de page
-│   │   ├── navigation.jsx   # Barre de navigation
-│   │   └── PostCard.jsx     # Carte d'actualité
-│   ├── pages/               # Pages principales
-│   │   ├── home.jsx         # Accueil
-│   │   ├── actuality.jsx    # Actualités/Blog
-│   │   ├── gallery.jsx      # Galerie
-│   │   ├── contact.jsx      # Contact
-│   │   ├── pixel-jam.jsx    # Info Pixel Jam
-│   │   ├── pixel-jam-2026.jsx # Édition 2026
-│   │   ├── pixel-lan-2025.jsx # Édition 2025
-│   │   └── PostDetail.jsx   # Détail d'une actualité
-│   ├── data/
-│   │   └── postsData.js     # Données des actualités
-│   ├── assets/              # Images et ressources
-│   │   ├── pixel_jam/
-│   │   ├── pixel_lan/
-│   │   ├── posts/
-│   │   └── sponso/
-│   ├── styles/              # Feuilles de style globales
-│   ├── utils/               # Utilitaires et helpers
-│   └── main.jsx             # Point d'entrée
-├── public/                  # Fichiers statiques
+├── src/                       # Front-end React (Vite)
+│   ├── apollo/
+│   │   └── client.js          # Client Apollo (GraphQL), envoie le cookie d'auth
+│   ├── components/            # Composants réutilisables
+│   │   ├── navigation.jsx     # Navigation (liens conditionnels selon l'état/rôle)
+│   │   ├── footer.jsx
+│   │   ├── PostCard.jsx       # Carte d'actualité
+│   │   └── ProtectedRoute.jsx # Protège les routes /admin (rôle admin)
+│   ├── pages/                 # Pages publiques
+│   │   ├── home.jsx
+│   │   ├── actuality.jsx      # Liste des actualités
+│   │   ├── PostDetail.jsx     # Détail d'une actualité
+│   │   ├── gallery.jsx        # Galerie (par année / catégorie)
+│   │   ├── games.jsx          # Jeux de société (API BoardGameGeek)
+│   │   ├── contact.jsx        # Contact + carte (Leaflet)
+│   │   ├── register.jsx       # Création de compte
+│   │   ├── pixel-jam-2026.jsx / pixel-lan-2025.jsx
+│   │   └── admin/             # Espace admin (protégé)
+│   │       ├── login.jsx
+│   │       ├── news.jsx       # CRUD actualités + upload d'images
+│   │       ├── events.jsx     # CRUD événements + calendrier (FullCalendar)
+│   │       ├── galerie.jsx    # CRUD galerie + upload
+│   │       └── games.jsx      # Import de jeux via l'API BGG
+│   ├── hooks/                 # Hooks personnalisés (useBreakpoints…)
+│   ├── config.js              # Lecture de VITE_API_URL
+│   ├── styles/                # Styles globaux
+│   └── main.jsx               # Point d'entrée + définition des routes
+├── server/                    # Back-end Node/Express + Apollo GraphQL
+│   ├── models/                # Schémas Mongoose (Post, Event, GalleryImage, Game, User)
+│   ├── schema/
+│   │   ├── typeDefs.js        # Schéma GraphQL (types, queries, mutations)
+│   │   ├── resolvers.js       # Resolvers
+│   │   └── validation.js      # Validation des données (Simple-Schema)
+│   ├── middleware/
+│   │   ├── auth.js            # signToken / requireAdmin (JWT)
+│   │   └── passport.js        # Stratégie passport-jwt (token lu dans le cookie)
+│   ├── services/
+│   │   └── bgg.js             # Intégration de l'API BoardGameGeek
+│   ├── app.js                 # Construit l'app Express + Apollo (createApp)
+│   ├── index.js               # Démarrage : Mongo + app + route /upload + listen
+│   ├── seed.js                # Insertion de données d'exemple
+│   ├── createAdmin.js         # Création d'un compte admin
+│   ├── tests/                 # Tests Jest + supertest
+│   └── .env.example           # Variables d'environnement attendues
+├── .env                       # VITE_API_URL (front, non versionné)
 ├── package.json
-├── vite.config.js
-└── README.md
+└── vite.config.js
 ```
 
 ## 🚀 Démarrage Rapide
@@ -60,59 +83,86 @@ ingegamez/
 ### Prérequis
 
 - **Node.js** version 18+
-- **npm** ou **yarn**
+- **Docker** (pour MongoDB) — ou une instance MongoDB locale
 
-### Installation
+### 1. Back-end (`server/`)
 
-1. **Cloner ou télécharger le projet**
+```bash
+cd server
+npm install
+cp .env.example .env          # puis renseigner MONGO_URI, JWT_SECRET (et BGG_TOKEN)
+npm run dev                   # démarre MongoDB (Docker) + le serveur
+```
 
-   ```bash
-   cd ingegamez
-   ```
-2. **Installer les dépendances**
+Le serveur GraphQL est accessible sur `http://localhost:4000/graphql`.
 
-   ```bash
-   npm install
-   ```
-3. **Lancer le serveur de développement**
+Première utilisation (optionnel) :
 
-   ```bash
-   npm run dev
-   ```
+```bash
+node seed.js                  # insère quelques actualités d'exemple
+node createAdmin.js           # crée un compte admin (identifiants en haut du fichier)
+```
 
-   Le site sera accessible à `http://localhost:5173`
+### 2. Front-end (racine du projet)
+
+```bash
+npm install
+echo "VITE_API_URL=http://localhost:4000" > .env   # URL de l'API
+npm run dev                   # site sur http://localhost:5173
+```
 
 ### Commandes Disponibles
 
-| Commande            | Description                                        |
-| ------------------- | -------------------------------------------------- |
-| `npm run dev`     | Lance le serveur de développement avec hot reload |
-| `npm run build`   | Compile le projet pour la production               |
-| `npm run preview` | Permet de prévisualiser le build en local         |
+| Emplacement | Commande            | Description                                      |
+| ----------- | ------------------- | ------------------------------------------------ |
+| racine      | `npm run dev`     | Front Vite avec hot reload                       |
+| racine      | `npm run build`   | Build de production du front                     |
+| racine      | `npm run preview` | Prévisualisation du build                       |
+| `server/` | `npm run dev`     | MongoDB (Docker) + serveur avec**nodemon** |
+| `server/` | `npm start`       | MongoDB + serveur (sans watch)                   |
+| `server/` | `npm test`        | Tests**Jest** + **supertest**        |
 
 ## 📦 Dépendances Principales
 
-- **React** - Bibliothèque UI
-- **Vite** - Bundler et serveur de développement ultra-rapide
-- **React Router** - Navigation entre pages
-- **Bootstrap & React Bootstrap** - Framework CSS et composants
-- **Material-UI** - Composants d'interface utilisateur
-- **Leaflet** - Cartographie interactive
-- **Emotion** - CSS-in-JS
+**Front-end**
+
+- **React** + **React Router** — UI et navigation
+- **Vite** — bundler et serveur de développement
+- **Apollo Client** + **graphql** — communication GraphQL avec l'API
+- **Material-UI**, **Bootstrap**, **Emotion** — composants et styles
+- **FullCalendar** — calendrier des événements
+- **Leaflet** — carte interactive (page Contact)
+
+**Back-end (`server/`)**
+
+- **Express** + **Apollo Server** (`@as-integrations/express4`) — serveur GraphQL
+- **Mongoose** — ODM pour MongoDB
+- **passport** + **passport-jwt** — authentification (JWT lu depuis un cookie HttpOnly)
+- **jsonwebtoken** + **bcrypt** — signature des tokens & hash des mots de passe
+- **cookie-parser** + **cors** — gestion des cookies & CORS
+- **multer** — upload de fichiers (images)
+- **simpl-schema** — validation des collections
+- **xml2js** — parsing des réponses de l'API BoardGameGeek
+- **jest**, **supertest**, **mongodb-memory-server** — tests (dev)
 
 ## 🎨 Technologies
 
-- Frontend: React 18
-- Build: Vite 8
-- Styling: CSS Modules + Bootstrap + Material-UI
-- Linting: ESLint
+Application **fullstack JavaScript** :
+
+- **Front-end** : React, Vite, CSS Modules, Apollo Client (GraphQL)
+- **Back-end** : Node.js, Express, Apollo Server (GraphQL), MongoDB / Mongoose
+- **Authentification** : JWT stocké dans un cookie **HttpOnly**, **passport-jwt**, contrôle de rôle (admin)
+- **API externe** : BoardGameGeek (jeux) côté back-end, OpenStreetMap / Leaflet côté front-end
+- **Tests** : Jest + supertest (unitaires & intégration)
+- **Linting** : ESLint
 
 ## 📝 Notes de Développement
 
-- Les modules CSS sont utilisés pour éviter les conflits de noms
-- La navigation est gérée avec React Router
-- Les pages sont réutilisables grâce aux composants modulaires
-- Chaque page a ses propres styles (fichiers `.module.css`)
+- Architecture **fullstack** : front React (Vite) et back Express/Apollo GraphQL séparés, reliés via `VITE_API_URL`.
+- Les modules CSS (`.module.css`) évitent les conflits de noms ; chaque page a ses propres styles.
+- La navigation est gérée avec React Router ; les routes admin sont protégées par `ProtectedRoute` (front) **et** `requireAdmin` (back).
+- L'authentification repose sur un **cookie HttpOnly** (le token n'est jamais exposé au JavaScript) ; le front n'envoie pas de token manuellement (`credentials: 'include'`).
+- Les uploads d'images passent par la route `/upload` (multer), réservée aux administrateurs.
 
 ## 📄 Licence
 
@@ -171,16 +221,16 @@ Suivi des exigences FSWD 2026.
 ### Étape 7 — Authentification
 
 - [X] **7.1** Création de compte et connexion publique
-  - [X] Modèle `User` à compléter : ajouter `email`, `nom`, `prénom` *(actuellement uniquement `username`)*
+  - [X] Modèle `User` à compléter : ajouter `email`, `nom`, `prénom`
   - [X] Mutation `register` à créer (email unique insensible à la casse, connexion auto après inscription)
   - [X] Page de login affichée automatiquement si non authentifié
   - [X] Messages d'erreur explicites en cas d'échec
   - [X] Connexion admin fonctionnelle *(mutation `login`, bcrypt, JWT)*
 - [X] **7.2** Interface adaptée à l'état de connexion (login minimal vs. app complète)
 - [X] **7.3** Déconnexion avec retour automatique à la page de login
-- [X] **7.4** Authentification via **passport.js** *(JWT custom direct actuellement — passport non installé)*
+- [X] **7.4** Authentification via **passport.js**
   - [X] Toutes les routes qui doivent l'être protégées via passport
-- [X] **7.5** Sécurité — token dans un **cookie HttpOnly** *(actuellement retourné dans le payload GraphQL et stocké manuellement)*
+- [X] **7.5** Sécurité — token dans un **cookie HttpOnly**
 
 ### Étape 8 — GraphQL
 
@@ -190,7 +240,7 @@ Suivi des exigences FSWD 2026.
 - [X] **8.2** Données récupérées avec GraphQL côté client
   - [X] Queries retournent `null` / `[]` si non authentifié
 - [X] **8.3** Mutations protégées côté serveur (`requireAdmin`)
-  - [X] Auteur assigné depuis `context.user` (pas passé en argument)
+  - [X] Auteur assigné depuis `context.user`
 - [X] **8.4** Pages mises à jour automatiquement (refetch ou cache Apollo)
 
 ### Étape 9 — API externe

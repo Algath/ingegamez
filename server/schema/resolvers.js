@@ -7,6 +7,14 @@ import { fetchGameByName } from '../services/bgg.js';
 import GalleryImage from '../models/GalleryImage.js';
 import { PostSchema, EventSchema, GalleryImageSchema } from './validation.js';
 
+const isProd = process.env.NODE_ENV === 'production';
+const cookieOptions = {
+  httpOnly: true,
+  sameSite: isProd ? 'none' : 'lax',
+  secure: isProd,
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+}
+
 export const resolvers = {
   Query: {
     posts: async () => {
@@ -46,12 +54,7 @@ export const resolvers = {
       await user.save();
 
       const token = signToken({ id: user._id, username: user.username, role: user.role });
-      context.res.cookie('token', token, {
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: false,
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 jours
-      });
+      context.res.cookie('token', token, cookieOptions);
       return { username: user.username, role: user.role };
     },
 
@@ -63,17 +66,16 @@ export const resolvers = {
       if (!valid) throw new Error('Identifiants invalides');
 
       const token = signToken({ id: user._id, username: user.username, role: user.role });
-      context.res.cookie('token', token, {
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: false,
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 jours
-      });
+      context.res.cookie('token', token, cookieOptions);
       return { username: user.username, role: user.role };
     },
     
     logout: async (_, __, context) => {
-      context.res.clearCookie('token');
+      context.res.clearCookie('token', {
+        httpOnly: true,
+        sameSite: isProd ? 'none' : 'lax',
+        secure: isProd,
+      });
       return true;
     },
 

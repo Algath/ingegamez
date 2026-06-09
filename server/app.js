@@ -12,7 +12,11 @@ export async function createApp() {
     await server.start();
 
     const app = express();
-    app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+    
+    app.set('trust proxy', 1);
+    const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:5173';
+
+    app.use(cors({ origin: allowedOrigin, credentials: true }));
     app.use(express.json());
     app.use(cookieParser());
     app.use(passport.initialize());
