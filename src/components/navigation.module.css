@@ -73,6 +73,29 @@
     width: 100%;
 }
 
+.burger {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.6rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.logoutButton {
+    background: var(--color-overlay);
+    color: #fff;
+    border: var(--color-text) 2px solid;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor:pointer;
+    font-weight: 600;
+    font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+    transition: opacity 0.2s;
+}
+.logoutButton:hover {
+  opacity: 0.60;
+}
 /* ===== Responsive ===== */
 @media (min-width: 1920px) {
     .nav { gap: 50px; }
@@ -94,20 +117,4 @@
     .brandName { font-size: 1.1rem; }
     .navLinks { gap: 12px; flex-direction: column; width: 100%; }
     .navLinks li a { font-size: 0.9rem; }
-}
-
-@media (max-width: 480px) {
-    .header { padding: 8px 10px; }
-    .nav { gap: 10px; }
-    .logoBrand { gap: 8px; }
-    .logoBrand img { width: 32px; height: 32px; }
-    .brandName { font-size: 0.9rem; }
-    .navLinks { gap: 8px; }
-    .navLinks li a { font-size: 0.8rem; }
-}
-
-@media (max-width: 359px) {
-    .logoBrand img { width: 28px; height: 28px; }
-    .brandName { font-size: 0.85rem; }
-    .navLinks li a { font-size: 0.75rem; }
 }

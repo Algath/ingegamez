@@ -1,8 +1,10 @@
 import Post from '../models/Post.js';
 import User from '../models/User.js';
 import Game from '../models/Game.js';
+import Event from '../models/Event.js';
 import { signToken, requireAdmin } from '../middleware/auth.js';
 import { fetchGameByName } from '../services/bgg.js';
+import GalleryImage from '../models/GalleryImage.js';
 
 export const resolvers = {
   Query: {
@@ -25,6 +27,8 @@ export const resolvers = {
 
     games: async () => await Game.find().sort({ name: 1 }),
     game: async (_, { bggId }) => await Game.findOne({ bggId }),
+    events: async () => await Event.find().sort({ date: 1 }),
+    galleryImages: async () => await GalleryImage.find().sort({ year: -1}),
   },
 
   Mutation: {
@@ -80,6 +84,30 @@ export const resolvers = {
         { $set: data },
         { upsert: true, new: true }
       );
+    },
+
+    createEvent: async (_, args, context) => {
+      requireAdmin(context);
+      const event = new Event(args);
+      return await event.save();
+    },
+    
+    deleteEvent: async (_, { id }, context) => {
+      requireAdmin(context);
+      const result = await Event.findByIdAndDelete(id);
+      return result !== null;
+    },
+
+    createGalleryImage: async (_, args, context) => {
+      requireAdmin(context);
+      const image = new GalleryImage(args);
+      return await image.save();
+    },
+
+    deleteGalleryImage: async (_, { id }, context) => {
+      requireAdmin(context);
+      const result = await GalleryImage.findByIdAndDelete(id);
+      return result !== null;
     },
   },
 };

@@ -3,8 +3,16 @@ import { Link } from "react-router-dom";
 import Navigation from "../components/navigation";
 import Footer from "../components/footer";
 import styles from "./admin.module.css";
+import { useNavigate } from 'react-router-dom';
+
 
 function Admin() {
+    const navigate = useNavigate();
+    function handleLogout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        navigate('/login');
+    }
     return (
         <div className={styles.admin}>
             <header>
@@ -18,9 +26,10 @@ function Admin() {
                         <Link to="/admin/events" className={styles.adminLink}>Manage Events</Link>
                         <Link to="/admin/news" className={styles.adminLink}>Manage News</Link>
                         <Link to="/admin/galerie" className={styles.adminLink}>Manage Galerie</Link>
+                        <Link to="/admin/games" className={styles.adminLink}>Manage Games</Link>
                     </div>
                     <br />
-                    <button className={styles.logoutButton}>Logout</button>
+                    <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
                 </section>
             </main>
             <Footer />

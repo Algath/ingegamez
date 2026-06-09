@@ -1,0 +1,33 @@
+.container{
+    background-color: #0a0a0a;
+    background-image: url('../assets/Mascotte.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center +15%;
+}
+
+.gamesGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px;
+}
+
+.gameCard{
+    background: var(--color-overlay);
+    backdrop-filter: var(--backdrop-filter);
+    border-radius: var(--border-radius);
+    border: var(--border-accent);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.gameImage{
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+}

@@ -44,7 +44,7 @@ function Footer() {
                 <div>Valais/Wallis Suisse</div>
                 <br/>
                 <div>Jeudi</div>
-                <div>16:30-22:00</div>
+                <div>16:30-19:30</div>
                 <Link to="mailto:ingegamez@hevs.ch">ingegamez@hevs.ch</Link>
             </section>
             <p>&copy; 2026 Our Assossiation. All rights reserved.</p>

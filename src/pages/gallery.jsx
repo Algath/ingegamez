@@ -3,58 +3,35 @@ import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 import { ImageList, ImageListItem } from '@mui/material';
 import styles from './gallery.module.css';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 
-const galleryData = [
-    {
-        year: 2025,
-        events: [
-            {
-                name: 'Game Jam',
-                icon: '🕹️',
-                images: [
-                    { src: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e', alt: 'Game Jam 1' },
-                    { src: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d', alt: 'Game Jam 2' },
-                    { src: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45', alt: 'Game Jam 3' },
-                ],
-            },
-            {
-                name: 'LAN Party',
-                icon: '💻',
-                images: [
-                    { src: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c', alt: 'LAN 1' },
-                    { src: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8', alt: 'LAN 2' },
-                ],
-            },
-        ],
-    },
-    {
-        year: 2026,
-        events: [
-            {
-                name: 'Game Jam',
-                icon: '🕹️',
-                images: [
-                    { src: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e', alt: 'Game Jam 1' },
-                    { src: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d', alt: 'Game Jam 2' },
-                    { src: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45', alt: 'Game Jam 3' },
-                ],
-            },
-            {
-                name: 'Murder Party',
-                icon: '🕵️‍♂️',
-                images: [],
-            },
-            {
-                name: 'LAN Party',
-                icon: '💻',
-                images: [
-                    { src: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c', alt: 'LAN 1' },
-                    { src: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8', alt: 'LAN 2' },
-                ],
-            },
-        ],
-    },
-];
+const GET_GALLERY = gql`
+    query GetGallery {
+        galleryImages {
+            id
+            url
+            alt
+            year
+            category
+        }
+    }
+`;
+
+function groupGallery(images) {
+    const byYear = {};
+    for (const img of images) {
+        byYear[img.year] ??= {};
+        byYear[img.year][img.category] ??= [];
+        byYear[img.year][img.category].push({ src: img.url, alt: img.alt});
+    }
+    return Object.entries(byYear)
+        .map(([year, cats]) => ({
+            year: Number(year),
+            events: Object.entries(cats).map(([name, imgs]) => ({name, images: imgs})),
+        }))
+        .sort((a,b) => b.year - a.year);
+}
 
 function GalleryEvent({ event, isOpen, onToggle }) {
     return (
@@ -70,7 +47,6 @@ function GalleryEvent({ event, isOpen, onToggle }) {
                             <ImageListItem key={img.src}>
                                 <img
                                     src={img.src}
-                                    srcSet={`${img.src}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                     alt={img.alt}
                                     loading="lazy"
                                 />
@@ -115,6 +91,8 @@ function GalleryYear({ yearData, isOpen, onToggle }) {
 function Gallery() {
     const currentYear = new Date().getFullYear();
     const [openYear, setOpenYear] = useState(currentYear);
+    const { data } = useQuery(GET_GALLERY);
+    const galleryData = groupGallery(data?.galleryImages ?? []);
 
     const handleYearToggle = (year) => {
         setOpenYear(openYear === year ? null : year);

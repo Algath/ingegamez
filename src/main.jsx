@@ -14,26 +14,35 @@ import News from './pages/admin/news'
 import GalerieAdmin from './pages/admin/galerie'
 import Login from './pages/admin/login'
 import Register from './pages/register'
+import AdminGames from './pages/admin/games'
+import Games from './pages/games'
 import './styles/global.css'
+import client from './apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
+import ProtectedRoute from './components/ProtectedRoute';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pixel-jam-2026" element={<PixelJam />} />
-        <Route path="/pixel-lan-2025" element={<PixelLan />} />
-        <Route path="/actuality" element={<Actuality />} />
-        <Route path="/post/:slug" element={<PostDetail />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/login/admin" element={<Admin />} />
-        <Route path="/admin/events" element={<Events />} />
-        <Route path="/admin/news" element={<News />} />
-        <Route path="/admin/galerie" element={<GalerieAdmin />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </BrowserRouter>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pixel-jam-2026" element={<PixelJam />} />
+          <Route path="/pixel-lan-2025" element={<PixelLan />} />
+          <Route path="/actuality" element={<Actuality />} />
+          <Route path="/post/:slug" element={<PostDetail />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/games" element={<ProtectedRoute><Games /></ProtectedRoute>} />
+          <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+          <Route path="/admin/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
+          <Route path="/admin/news" element={<ProtectedRoute><News /></ProtectedRoute>} />
+          <Route path="/admin/galerie" element={<ProtectedRoute><GalerieAdmin /></ProtectedRoute>} />
+          <Route path="/admin/games" element={<ProtectedRoute><AdminGames /></ProtectedRoute>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </ApolloProvider>
   </StrictMode>,
 )

@@ -4,24 +4,46 @@ import Carousel from 'react-material-ui-carousel';
 import { Paper } from '@mui/material';
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
-import styles from './home.module.css'
-import pixelJam from '../assets/pixel_jam/pixel_jam.png'
-import isc from '../assets/sponso/ISC.png'
-import maitre_du_jeux from '../assets/sponso/le_maitre_du_jeux.png'
-import christmas from '../assets/posts/christmas.png'
-import crackList from '../assets/posts/crack_list.png'
-import discord from '../assets/posts/discord.png'
-import endSaison from '../assets/posts/end_saison.png'
-import tsuro from '../assets/posts/tsuro.png'
+import styles from './home.module.css';
+import isc from '../assets/sponso/ISC.png';
+import maitre_du_jeux from '../assets/sponso/le_maitre_du_jeux.png';
+import { gql } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 
-// Placeholder — sera remplacé par des données du backend
-const galleryItems = [
-    { src: christmas,  caption: 'Soirée de Noël' },
-    { src: crackList,  caption: 'Crack List' },
-    { src: discord,    caption: 'Discord' },
-    { src: endSaison,  caption: 'Fin de saison' },
-    { src: tsuro,      caption: 'Tsuro' },
-];
+const GET_LATEST_POSTS = gql`
+    query GetLatestPosts {
+        posts {
+         id
+         title
+         image
+         description
+         slug
+        }
+    }
+`;
+
+const GET_EVENTS = gql`
+    query GetEvents {
+        events {
+            id
+            title
+            logo
+            date
+            location
+        }
+    }
+`;
+
+const GET_GALLERY = gql`
+    query GetGallery {
+        galleryImages {
+            id
+            url
+            alt
+            category
+        }
+    }
+`;
 
 function GalleryItem({ item }) {
     return (
@@ -33,6 +55,15 @@ function GalleryItem({ item }) {
 }
 
 function Home () {
+    const { data } = useQuery(GET_LATEST_POSTS);
+    const latestPosts = data?.posts?.slice(0,2) ?? [];
+    const { data: eventsData } = useQuery(GET_EVENTS);
+    const today = new Date().toISOString().slice(0,10);
+    const upcomingEvent = (eventsData?.events ?? [])
+        .filter((e) => e.date >= today)
+        .slice(0, 1)[0];
+    const { data: galleryData } = useQuery(GET_GALLERY);
+    const galleryImages = galleryData?.galleryImages ?? [];
     return (
         <div className={styles.home}>
             <header>
@@ -49,13 +80,16 @@ function Home () {
 
                 <section className={styles.eventsSection}>
                     <div className={styles.contentOverlay}>
-                        <h2>Événement en cours</h2>
-                        <div className={styles.eventCard}>
-                            <Link to="/pixel-jam-2026" className={styles.eventLink}>
-                                <img src={pixelJam} alt="Pixel Jam 2026" />
-                                Pixel Jam 2026 - 21-22 mars 2026
-                            </Link>
-                        </div>
+                        <h2>Prochain événement</h2>
+                        {upcomingEvent ? (
+                            <div className={styles.eventCard}>
+                                {upcomingEvent.logo && <img src={upcomingEvent.logo} alt={upcomingEvent.title} className={styles.eventLogo} />}
+                                <strong>{upcomingEvent.title}</strong>{new Date(upcomingEvent.date).toLocaleDateString()}
+                                {upcomingEvent.location && `, ${upcomingEvent.location}`}
+                            </div>
+                        ) : (
+                            <p>Aucun événement à venir pour le moment. Restez à l'écoute !</p>
+                        )}
                     </div>
                 </section>
 
@@ -64,8 +98,8 @@ function Home () {
                         <h2>Galerie</h2>
                         <p>Découvrez les moments forts de nos événements</p>
                         <Carousel>
-                            {galleryItems.map((item, i) => (
-                                <GalleryItem key={i} item={item} />
+                            {galleryImages.map((img) => (
+                                <GalleryItem key={img.id} item={{src: img.url, caption: img.alt || img.category }} />
                             ))}
                         </Carousel>
                     </div>
@@ -74,11 +108,15 @@ function Home () {
                 <section className={styles.actualitySection}>
                     <div className={styles.contentOverlay}>
                         <h2>Dernières Actualités</h2>
-                        <article className={styles.newsItem}>
-                            <h3>Nouvelle soirée jeux de société !</h3>
-                            <p>Rejoignez-nous pour une soirée dédiée aux jeux de société le 15 mars à 19h. Venez découvrir de nouveaux jeux et partager un moment convivial avec d'autres passionnés !</p>
-                            <Link to="/actuality" className={styles.readMore}>Lire les actualités →</Link>
-                        </article>
+                        {latestPosts.map((post) => (
+                            <article key={post.id} className={styles.newsItem}>
+                                <h3>{post.title}</h3>
+                                <img src={post.image} alt={post.title} className={styles.newsImage} />
+                                <p>{post.description}</p>
+                                <Link to={`/post/` + post.slug} className={styles.readMore}>Lire le post →</Link>
+                            </article>
+                        ))}
+                        <Link to="/actuality" className={styles.viewAll}>Voir toutes les actualités →</Link>
                     </div>
                 </section>
 

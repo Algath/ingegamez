@@ -67,3 +67,47 @@
 .inputRow input {
     flex: 1;
 }
+.logoUpload {
+    border: 2px dashed #888;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.logoPreview {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+}
+.backButton {
+  background: var(--color-overlay);
+  color: #fff;
+  border: var(--color-text) 2px solid;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor:pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  transition: opacity 0.2s;
+}
+.backButton:hover {
+  opacity: 0.60;
+}
+
+.deleteButton {
+  background: var(--color-overlay);
+  color: #fff;
+  border: var(--color-text) 2px solid;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor:pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-left: 20px;
+  transition: opacity 0.2s;
+}
+.deleteButton:hover {
+  opacity: 0.60;
+}

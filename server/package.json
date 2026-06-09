@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "mongo": "docker start ingegamez-mongo 2>/dev/null || docker run -d --name ingegamez-mongo --restart unless-stopped -p 27017:27017 -v mongo-data:/data/db mongo:7",
-    "dev": "npm run mongo && node --watch index.js",
+    "dev": "npm run mongo && nodemon index.js",
     "start": "npm run mongo && node index.js"
   },
   "dependencies": {
@@ -17,6 +17,10 @@
     "graphql": "^16.9.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.7.0",
+    "multer": "^2.1.1",
     "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }

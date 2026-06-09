@@ -41,6 +41,27 @@ export const typeDefs = `#graphql
     rating: Float
   }
 
+  type Event {
+    id: ID!
+    title: String!
+    logo: String
+    date: String!
+    description: String
+    location: String
+    createdAt: String
+    updatedAt: String  
+  }
+
+  type GalleryImage {
+    id: ID!
+    url: String!
+    alt: String
+    year: Int!
+    category: String!
+    createdAt: String
+    updatedAt: String
+  }
+
   type Query {
     posts: [Post!]!
     post(slug: String!): Post
@@ -48,6 +69,8 @@ export const typeDefs = `#graphql
     me: User
     games: [BoardGame!]!
     game(bggId: String!): BoardGame
+    events: [Event!]!
+    galleryImages: [GalleryImage!]!
   }
 
   type Mutation {
@@ -87,5 +110,24 @@ export const typeDefs = `#graphql
 
     # BGG — admin uniquement
     importGame(name: String!): BoardGame!
+
+    createEvent(
+      title: String!
+      date: String!
+      description: String
+      location: String
+      logo: String
+    ): Event!
+
+    deleteEvent(id: ID!): Boolean!
+
+    createGalleryImage(
+      url: String!
+      alt: String
+      year: Int!
+      category: String!
+    ): GalleryImage!
+
+    deleteGalleryImage(id: ID!): Boolean!
   }
 `;

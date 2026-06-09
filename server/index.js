@@ -7,6 +7,19 @@ import { expressMiddleware } from '@as-integrations/express4';
 import { typeDefs } from './schema/typeDefs.js';
 import { resolvers } from './schema/resolvers.js';
 import { getUserFromToken } from './middleware/auth.js';
+import multer from 'multer';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const storage = multer.diskStorage({
+  destination: path.join(__dirname, 'uploads/'),
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`);
+  },
+});
+const upload = multer({ storage });
 
 const PORT = process.env.PORT || 4000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ingegamez';
@@ -24,7 +37,13 @@ async function start() {
   const app = express();
   app.use(cors());
   app.use(express.json());
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+  app.post('/upload', upload.single('image'), (req, res) => {
+    if (!req.file) return res.status(400).json({ error: 'Aucun fichier reçu' });
+    const url = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+    res.json({ url });
+  });
   // GraphQL endpoint — injecte l'utilisateur décodé dans le context
   app.use('/graphql', expressMiddleware(server, {
     context: async ({ req }) => {

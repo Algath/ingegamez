@@ -3,7 +3,11 @@ import { parseStringPromise } from 'xml2js';
 const BASE = 'https://boardgamegeek.com/xmlapi2';
 
 async function fetchXml(url) {
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${process.env.BGG_TOKEN}`,
+    },
+  });
   if (!res.ok) throw new Error(`BGG API error: ${res.status}`);
   const xml = await res.text();
   return parseStringPromise(xml, { explicitArray: false });

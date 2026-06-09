@@ -3,6 +3,19 @@ import { Link } from "react-router-dom";
 import Navigation from "../components/navigation";
 import Footer from "../components/footer";
 import styles from "./register.module.css";
+import { gql } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
+import { useNavigate } from 'react-router-dom';
+
+const REGISTER = gql`
+    mutation Register($username: String!, $email: String!, $nom: String!, $prenom: String!, $password: String!) {
+        register(username: $username, email: $email, nom: $nom, prenom: $prenom, password: $password) {
+            token
+            username
+            role
+        }
+    }
+`;
 
 function Register() {
     const [form, setForm] = useState({
@@ -13,14 +26,23 @@ function Register() {
         password: '',
     });
     const [error, setError] = useState(null);
+    const [registerUser] = useMutation(REGISTER);
+    const navigate = useNavigate();
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        // TODO: appeler la mutation GraphQL register(form)
+        try {
+            const { data } = await registerUser({ variables: form });
+            localStorage.setItem(`token`, data.register.token);
+            localStorage.setItem(`role`, data.register.role);
+            navigate('/');
+        } catch (err) {
+            setError(err.message);
+        }
     }
 
     return (

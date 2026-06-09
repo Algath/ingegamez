@@ -122,6 +122,22 @@ main {
   color: #999;
 }
 
+.backButton {
+  background: var(--color-overlay);
+  color: #fff;
+  border: var(--color-text) 2px solid;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor:pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  transition: opacity 0.2s;
+}
+.backButton:hover {
+  opacity: 0.60;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   main {
