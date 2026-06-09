@@ -44,6 +44,7 @@ function Events() {
     const [deleteEvent] = useMutation(DELETE_EVENT, { refetchQueries: [{ query: GET_EVENTS }] });
     const [form, setForm] = useState({ title: '', logo: '', date: '', description: '', location: '' });
     const fileInputRef = useRef(null);
+    const [error, setError] = useState(null);
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -53,7 +54,9 @@ function Events() {
         try {
             await createEvent({ variables: { ...form } });
             setForm({ title:'', logo: '', date: '', description: '', location: '' });
+            setError(null);
         } catch (err) {
+            setError('Failed to create event');
             console.error(err);
         }
     }
@@ -65,6 +68,7 @@ function Events() {
             const data = await res.json();
             setForm((f) => ({...f, logo: data.url }))
         } catch (err) {
+            setError('Failed to upload image');
             console.error(err);
         }
     }
@@ -88,7 +92,6 @@ function Events() {
                 <section className={styles.eventsSection}>
                     <h1>Events</h1>
                     <p>Here you can view and manage upcoming events.</p>
-                    
                 </section>
                 <section className={styles.eventsList}> {/*connecté à mongo et prendre les événements du backend*/}
                     <h2>Upcoming Events</h2>
@@ -105,6 +108,7 @@ function Events() {
                 </section>
                 <section className={styles.addEvent}>
                     <h2>Add New Event</h2>
+                    {error && <p className={styles.error}>{error}</p>}
                     <form onSubmit={handleSubmit}>
                         <div className={styles.inputRow}>
                             <input type="text" placeholder="Event Name" name="title" value={form.title} onChange={handleChange} />

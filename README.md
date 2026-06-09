@@ -151,7 +151,7 @@ Suivi des exigences FSWD 2026.
 
 - [X] **4.1** Serveur Express.js créé
   - [X] ES Modules (`"type": "module"`)
-  - [ ] Redémarrage automatique via **nodemon** *(utilise actuellement `node --watch`)*
+  - [X] Redémarrage automatique via **nodemon** *(utilise actuellement `node --watch`)*
 
 ### Étape 5 — Connexion client / serveur
 

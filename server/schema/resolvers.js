@@ -5,6 +5,7 @@ import Event from '../models/Event.js';
 import { signToken, requireAdmin } from '../middleware/auth.js';
 import { fetchGameByName } from '../services/bgg.js';
 import GalleryImage from '../models/GalleryImage.js';
+import { PostSchema, EventSchema, GalleryImageSchema } from './validation.js';
 
 export const resolvers = {
   Query: {
@@ -62,6 +63,7 @@ export const resolvers = {
     createPost: async (_, args, context) => {
       requireAdmin(context);
       const post = new Post({ ...args, author: args.author ?? context.user.username });
+      PostSchema.validate(args);
       return await post.save();
     },
 
@@ -89,6 +91,7 @@ export const resolvers = {
     createEvent: async (_, args, context) => {
       requireAdmin(context);
       const event = new Event(args);
+      EventSchema.validate(args);
       return await event.save();
     },
     
@@ -101,6 +104,7 @@ export const resolvers = {
     createGalleryImage: async (_, args, context) => {
       requireAdmin(context);
       const image = new GalleryImage(args);
+      GalleryImageSchema.validate(args);
       return await image.save();
     },
 
