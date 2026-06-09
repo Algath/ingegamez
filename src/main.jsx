@@ -17,6 +17,8 @@ import Register from './pages/register'
 import AdminGames from './pages/admin/games'
 import Games from './pages/games'
 import './styles/global.css'
+import '@fontsource/baloo-2/400.css'
+import '@fontsource/baloo-2/600.css'
 import client from './apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import ProtectedRoute from './components/ProtectedRoute';

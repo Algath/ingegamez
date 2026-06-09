@@ -11,22 +11,21 @@ function Footer() {
                     <Link to="/"><img src={logo} alt="IngéGamEZ"/></Link>
                     <span className={styles.brandName}>IngéGamEZ</span>
                 </div>
-                <p>IngéGamEZ est une association étudiante de l'HEI Sion, 
-                    organisant des soirées autour des jeux vidéos et jeu de société. 
-                    Nous organisons également des événements plus importants tels que 
-                    la Pixel Jam et la Pixel_Lan, qui rassemblent des passionnés de 
-                    jeux vidéo pour des compétitions et des week-ends ensemble.</p>
+                <ul className={styles.highlights}>
+                    <li>🎓 Association étudiante – HEI Sion</li>
+                    <li>🎲 Soirées jeux vidéo &amp; jeux de société</li>
+                    <li>🎪 Événements : Pixel Jam &amp; Pixel_Lan</li>
+                    <li>🤝 Une communauté de passionnés</li>
+                </ul>
+            </section>
+            <div className={styles.about}>
                 <p>
-                    Notre objectif est de créer une communauté dynamique et 
-                    inclusive autour du gaming, en offrant un espace où les 
-                    étudiants peuvent se divertir, socialiser et partager 
+                    Notre objectif est de créer une communauté dynamique et
+                    inclusive autour du gaming, en offrant un espace où les
+                    étudiants peuvent se divertir, socialiser et partager
                     leur passion pour les jeux vidéo.
                 </p>
-                <br/>
-                <p>Instagram : <a href="https://www.instagram.com/ingegamez/" target="_blank" rel="noopener noreferrer">@ingegamez</a></p>
-                <p>WhatsApp : <a href="https://chat.whatsapp.com/C00MXZiPS6vIRJ9lZyJNXm" target="_blank" rel="noopener noreferrer">Rejoindre le groupe WhatsApp</a></p>
-                <p>Discord : <a href="https://discord.gg/w8vhTMwgUW" target="_blank" rel="noopener noreferrer">Rejoindre le serveur Discord</a></p>
-            </section>
+            </div>
             <section className={styles.navigation}>
                 <h2>Quick Links</h2>
                 <dl>
@@ -35,7 +34,6 @@ function Footer() {
                     <dt><Link to="/pixel-lan-2025">Pixel_Lan</Link></dt>
                     <dt><Link to="/actuality">Actualités</Link></dt>
                     <dt><Link to="/gallery">Gallery</Link></dt>
-                    <dt><Link to="/contact">Contact</Link></dt>
                 </dl>
             </section>
             <section className={styles.contact}>
@@ -46,8 +44,15 @@ function Footer() {
                 <div>Jeudi</div>
                 <div>16:30-19:30</div>
                 <Link to="mailto:ingegamez@hevs.ch">ingegamez@hevs.ch</Link>
+                <div className={styles.socials}>
+                    <p><a href="https://www.instagram.com/ingegamez/" target="_blank" rel="noopener noreferrer">@ingegamez</a></p>
+                    <p><a href="https://chat.whatsapp.com/C00MXZiPS6vIRJ9lZyJNXm" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+                    <p><a href="https://discord.gg/w8vhTMwgUW" target="_blank" rel="noopener noreferrer">Discord</a></p>
+                </div>
             </section>
-            <p>&copy; 2026 Our Assossiation. All rights reserved.</p>
+            <div className={styles.copyright}>
+                <p>&copy; 2026 IngéGamEZ. Tous droits réservés.</p>
+            </div>
         </footer>
     );
 }

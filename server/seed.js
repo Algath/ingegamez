@@ -37,7 +37,7 @@ const posts = [
     date: "January 5, 2026",
     category: "Events",
     author: "Algath",
-    image: "/pixel_jam/pixel_jam_2026.png",
+    image: "/posts/pixel_jam_2026.png",
     description: "Les inscriptions pour le Pixel Jam 2026 sont ouvertes ! Venez créer un jeu vidéo...",
     slug: "pixel-jam-2026-inscriptions",
   },
