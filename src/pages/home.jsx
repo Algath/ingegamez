@@ -49,7 +49,6 @@ function GalleryItem({ item }) {
     return (
         <Paper elevation={0} className={styles.carouselItem}>
             <img src={item.src} alt={item.caption} className={styles.carouselImage} />
-            <p className={styles.carouselCaption}>{item.caption}</p>
         </Paper>
     );
 }

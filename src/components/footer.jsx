@@ -31,7 +31,7 @@ function Footer() {
                 <div>21 Rue de l'Industrie, 1950 Sion</div>
                 <div>Valais/Wallis Suisse</div>
                 <br/>
-                <div>Jeudi</div>
+                <div>Tous les jeudi</div>
                 <div>16:30-19:30</div>
                 <Link to="mailto:ingegamez@hevs.ch">ingegamez@hevs.ch</Link>
                 <div className={styles.socials}>

@@ -33,6 +33,26 @@
     margin-top: 30px;
 }
 
+.eventsList > ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.eventsList > ul > li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(202, 191, 173, 0.15);
+}
+
+.eventsList > ul > li .deleteButton {
+    align-self: flex-end;
+    margin-left: 0;
+}
+
 .addEvent {
     background: var(--color-overlay);
     backdrop-filter: var(--backdrop-filter);
@@ -110,4 +130,11 @@
 }
 .deleteButton:hover {
   opacity: 0.60;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .inputRow {
+        flex-direction: column;
+    }
 }
