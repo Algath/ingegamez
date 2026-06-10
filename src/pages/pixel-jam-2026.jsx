@@ -2,6 +2,7 @@ import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 import styles from './pixel-jam.module.css'
 import pixelJam from '../assets/pixel_jam/pixel_jam_2026.png'
+import tshirt from '../assets/pixel_jam/logo_tshirt.2026.png'
 import homeStyles from './home.module.css'
 
 function PixelJam () {
@@ -9,45 +10,56 @@ function PixelJam () {
         <div className={styles.pixelJam}>
             <header>
                 <Navigation />
-            </header>  
+            </header>
             <main>
-                <img src={pixelJam} alt="Pixel Jam 2026" className={styles.eventHeaderImage}/>
-                <section className={homeStyles.contentOverlay}>
-                    <p>
-                        La Pixel Jam est un marathon de développement de jeux vidéos sur 36 heures
-                qui est organisé annuellement par l'association IngéGamEZ.
-                Cet événement rassemble des passionnés de jeux vidéo, des développeurs, 
-                des artistes et des créateurs de tous horizons pour créer des jeux originaux en un temps limité.
-                    </p>
-                    <br />
-                    <p>
-                      C'est une occasion unique pour les participants de mettre à l'épreuve leur créativité, 
-                leurs compétences techniques et leur capacité à travailler en équipe dans un environnement stimulant et convivial.  
-                    </p>
-                    <p>
-                        Un thème est choisi chaque année pour guider la création des jeux. Et pour cette année, nous apportons un nouveau défi 
-                avec une contrainte technique supplémentaire!
-                    </p>
-                    <section className={`${styles.importantInfo} ${homeStyles.contentOverlay}`}>
-                        <h2>Infos importantes</h2>
-                        <p>Date: 21-22 mars 2026</p>
-                        <p>Nombre de personne par équipe : 2 à 4</p>
+                <h1 className={styles.pageTitle}>Pixel Jam 2026</h1>
+                <section className={`${styles.intro} ${homeStyles.contentOverlay}`}>
+                    <div className={styles.introText}>
+                        <p>
+                            La Pixel Jam est un marathon de développement de jeux vidéos sur 36 heures
+                            qui est organisé annuellement par l'association IngéGamEZ.
+                            Cet événement rassemble des passionnés de jeux vidéo, des développeurs,
+                            des artistes et des créateurs de tous horizons pour créer des jeux originaux en un temps limité.
+                        </p>
                         <br />
-                        <h3>Thème: Let Their be Chaos</h3>
-                        <ul>
-                            <li>Contraintes techniques:</li>
-                            <li><b>Contrainte 1:</b> Seul 5 couleurs + le noir et blanc peuvent être utilisé.</li>
-                            <li><b>Contrainte 2:</b> Minimum 30 touches du clavier doivent être utilisées.</li>
-                        </ul>
-                        <p></p>
-                        <ul>
-                            <li>Tarifs:</li>
-                            <li>Inscription: <b>20 CHF</b></li>
-                            <li>Inscription + T-shirt: <b>30 CHF</b></li>
-                            <li>T-Shirt: <b>15 CHF</b></li>
-                        </ul>
-                    </section>
+                        <p>
+                            C'est une occasion unique pour les participants de mettre à l'épreuve leur créativité,
+                            leurs compétences techniques et leur capacité à travailler en équipe dans un environnement stimulant et convivial.
+                        </p>
+                        <p>
+                            Un thème est choisi chaque année pour guider la création des jeux. Et pour cette année, nous apportons un nouveau défi
+                            avec une contrainte technique supplémentaire!
+                        </p>
+                    </div>
+                    <div className={styles.introImages}>
+                        <img src={tshirt} alt="T-shirt Pixel Jam 2026" />
+                    </div>
                 </section>
+
+                <section className={`${styles.importantInfo} ${homeStyles.contentOverlay}`}>
+                    <div className={styles.infoBox}>
+                    <h2>Infos importantes</h2>
+                    <p>Date: 21-22 mars 2026</p>
+                    <p>Nombre de personne par équipe : 2 à 4</p>
+                    <br />
+                    <h3>Thème: Let Their be Chaos</h3>
+                    <ul>
+                        <li>Contraintes techniques:</li>
+                        <li><b>Contrainte 1:</b> Seul 5 couleurs + le noir et blanc peuvent être utilisé.</li>
+                        <li><b>Contrainte 2:</b> Minimum 30 touches du clavier doivent être utilisées.</li>
+                    </ul>
+                    <p></p>
+                    <ul>
+                        <li>Tarifs:</li>
+                        <li>Inscription: <b>20 CHF</b></li>
+                        <li>Inscription + T-shirt: <b>30 CHF</b></li>
+                        <li>T-Shirt: <b>15 CHF</b></li>
+                    </ul>
+                    </div>
+                </section>
+
+                <img src={pixelJam} alt="Pixel Jam 2026" className={styles.poster} />
+
                 <section className={`${styles.planning} ${homeStyles.contentOverlay}`}>
                     <h2>Planning</h2>
                     <p><b>Samedi 21 mars 2026</b></p>
@@ -77,8 +89,6 @@ function PixelJam () {
                     <p>Vous retrouverez également une coop à côté du bâtiment pour la journée de samedi et des snacks + boissons seront mis à disposition.</p>
                 </section>
                 <section className={`${styles.liens} ${homeStyles.contentOverlay}`}>
-                    {/* <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAM0PqP1UM0xSOUFXNEM2N1ZKSzBBUkFBSDI4Q1hZUS4u" className={styles.formulaire}><h1>Formulaire</h1></a>
-                    <br/> */}
                     <h2>Liens utiles</h2>
                     <ul>
                         <li><a href="https://discord.gg/NakSqWHGTQ">Serveur Discord d'IngéGamEZ</a></li>

@@ -12,7 +12,8 @@
     padding: 40px clamp(20px, 4vw, 60px);
     border-radius: var(--border-radius);
     border-left: var(--border-accent);
-    margin: 20px clamp(20px, 5vw, 80px);
+    width: min(92%, 1440px);
+    margin: 20px auto;
     color: #fff;
 }
 

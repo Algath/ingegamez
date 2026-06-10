@@ -26,16 +26,6 @@ function Footer() {
                     leur passion pour les jeux vidéo.
                 </p>
             </div>
-            <section className={styles.navigation}>
-                <h2>Quick Links</h2>
-                <dl>
-                    <dt><Link to="/">Home</Link></dt>
-                    <dt><Link to="/pixel-jam-2026">Pixel Jam</Link></dt>
-                    <dt><Link to="/pixel-lan-2025">Pixel_Lan</Link></dt>
-                    <dt><Link to="/actuality">Actualités</Link></dt>
-                    <dt><Link to="/gallery">Gallery</Link></dt>
-                </dl>
-            </section>
             <section className={styles.contact}>
                 <h2>Contact Us</h2>
                 <div>21 Rue de l'Industrie, 1950 Sion</div>

@@ -57,9 +57,7 @@ function Contact() {
                     <li>Whatsapp : <a href="https://chat.whatsapp.com/C00MXZiPS6vIRJ9lZyJNXm">Groupe WhatsApp d'IngéGamEZ</a></li>
                     <li>Instagram : <a href="https://www.instagram.com/ingegamez/">IngéGamEZ sur Instagram</a></li>
                 </ul>
-                <section className={styles.content}>
-                    <div id="map" style={{ height: "450px", width: "100%", borderRadius: "8px" }} />
-                </section>
+                <div id="map" style={{ height: "450px", width: "100%", borderRadius: "8px", marginTop: "20px" }} />
             </main>
             <Footer />
         </div>

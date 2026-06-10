@@ -2,6 +2,7 @@ import Navigation from '../components/navigation';
 import Footer from '../components/footer'
 import styles from './pixel-lan.module.css'
 import pixelLan from '../assets/pixel_lan/pixel_lan_2025.jpg'
+import lanLogo from '../assets/pixel_lan/PL_rounderP_logo_2025.png'
 import homeStyles from './home.module.css'
 
 function PixelLan () {
@@ -11,39 +12,50 @@ function PixelLan () {
                 <Navigation />
             </header>
             <main>
-                <img src={pixelLan} alt="Pixel Lan 2025" className={styles.eventHeaderImage}/>
-                <section className={homeStyles.contentOverlay}>
-                    <p>
-                        La Pixel Lan est un week-end de jeux vidéos en réseau organisé annuellement par l'association IngéGamEZ.
-                        Cet événement rassemble des passionnés de jeux vidéo et des joueurs de tous horizons pour partager leur
-                        amour du jeu vidéo dans une ambiance conviviale et compétitive.
-                    </p>
-                    <br />
-                    <p>
-                        Pour l'occasion, nous avons ouvert un serveur discord temporaire! Il est accessible à tous les participants
-                        pour la durée de la LAN.
-                    </p>
-                    <section className={`${styles.importantInfo} ${homeStyles.contentOverlay}`}>
-                        <h2>Infos importantes</h2>
-                        <p>Date: 25-26 octobre 2025</p>
-                        <p>Tarifs:</p>
-                        <ul>
-                            <li>Inscription: <b>20 CHF</b></li>
-                        </ul>
-                        <br />
-                        <h2>Tournoi</h2>
-                        <p>Un tournoi est organisé sur plusieurs jeux. Il a lieu durant la journée de samedi. Tous les jeux sont
-                            en équipe de 5. Il est possible de s'inscrire solo et on créera une équipe pour vous, ou de s'inscrire 
-                            avec une équipe déjà constituée. Les jeux sont les suivants:
+                <h1 className={styles.pageTitle}>Pixel_Lan 2025</h1>
+                <section className={`${styles.intro} ${homeStyles.contentOverlay}`}>
+                    <div className={styles.introText}>
+                        <p>
+                            La Pixel Lan est un week-end de jeux vidéos en réseau organisé annuellement par l'association IngéGamEZ.
+                            Cet événement rassemble des passionnés de jeux vidéo et des joueurs de tous horizons pour partager leur
+                            amour du jeu vidéo dans une ambiance conviviale et compétitive.
                         </p>
-                        <ul>
-                            <li>League of Legends</li>
-                            <li>Valorant</li>
-                            <li>Overwatch</li>
-                            <li>Minecraft</li>
-                        </ul>
-                    </section>
+                        <br />
+                        <p>
+                            Pour l'occasion, nous avons ouvert un serveur discord temporaire! Il est accessible à tous les participants
+                            pour la durée de la LAN.
+                        </p>
+                    </div>
+                    <div className={styles.introImages}>
+                        <img src={lanLogo} alt="Logo Pixel_Lan 2025" />
+                    </div>
                 </section>
+
+                <section className={`${styles.importantInfo} ${homeStyles.contentOverlay}`}>
+                    <div className={styles.infoBox}>
+                    <h2>Infos importantes</h2>
+                    <p>Date: 25-26 octobre 2025</p>
+                    <p>Tarifs:</p>
+                    <ul>
+                        <li>Inscription: <b>20 CHF</b></li>
+                    </ul>
+                    <br />
+                    <h2>Tournoi</h2>
+                    <p>Un tournoi est organisé sur plusieurs jeux. Il a lieu durant la journée de samedi. Tous les jeux sont
+                        en équipe de 5. Il est possible de s'inscrire solo et on créera une équipe pour vous, ou de s'inscrire
+                        avec une équipe déjà constituée. Les jeux sont les suivants:
+                    </p>
+                    <ul>
+                        <li>League of Legends</li>
+                        <li>Valorant</li>
+                        <li>Overwatch</li>
+                        <li>Minecraft</li>
+                    </ul>
+                    </div>
+                </section>
+
+                <img src={pixelLan} alt="Pixel Lan 2025" className={styles.poster} />
+
                 <section className={`${styles.planning} ${homeStyles.contentOverlay}`}>
                     <h2>Planning</h2>
                     <p><b>Samedi 25 octobre 2025</b></p>

@@ -1,22 +1,61 @@
 /* ===== Pixel Jam 2026 ===== */
 .pixelLan {
-    background-color: #0a0a0a;
-    background-image: url('../assets/pixel_lan/pixel_lan.png');
+    background: linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 25%, #1565c0 100%);
     background-attachment: fixed;
-    background-size: cover;
-    background-position: center +25%;
+    min-height: 100vh;
 }
 
-.eventHeaderImage {
-    width: clamp(100px, 20vw, 300px);
-    height: auto;
-    object-fit: contain;
-    padding: 80px 30px;
+.pageTitle {
+    text-align: center;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    margin: 40px 20px 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Largeur unifiée des sections (~3/4 de l'écran, centré) */
+.pixelLan .intro,
+.pixelLan .importantInfo,
+.pixelLan .planning,
+.pixelLan .liens {
+    width: min(92%, 1440px);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.intro {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.introText {
+    text-align: justify;
+}
+
+.introImages {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 20px;
+}
+
+.introImages img {
     width: 100%;
+    max-width: 320px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.poster {
+    display: block;
+    width: min(94%, 1480px);
+    height: auto;
+    margin: 30px auto;
+    border-radius: 8px;
 }
 
 .eventInfo {
@@ -32,12 +71,17 @@
 }
 
 .importantInfo {
-    background: rgba(202, 191, 173, 0.05);
+    background: rgba(30, 57, 70, 0.95);
     padding: 20px;
     border-radius: 8px;
     border-left: 3px solid #cabfad;
     margin-top: 30px;
     text-align: center;
+}
+
+.infoBox {
+    max-width: 520px;
+    margin: 0 auto;
 }
 
 .importantInfo ul {
@@ -91,6 +135,10 @@
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
+    .intro {
+        grid-template-columns: 1fr;
+    }
+
     .eventInfo,
     .planning,
     .liens {

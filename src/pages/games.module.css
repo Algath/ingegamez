@@ -10,7 +10,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    margin: 20px;
+    width: min(92%, 1440px);
+    margin: 20px auto;
 }
 
 .gameCard{
