@@ -57,6 +57,7 @@ function Navigation() {
                         <li><Link to="/contact">Contact</Link></li>
                         {isAdmin && (
                             <>
+                            <li className={styles.navDivider} aria-hidden="true"></li>
                             <li><Link to="/games">Jeux</Link></li>
                             <li><Link to="/admin">Admin</Link></li>
                             </>

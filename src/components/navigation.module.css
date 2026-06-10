@@ -73,6 +73,13 @@
     width: 100%;
 }
 
+.navDivider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(202, 191, 173, 0.4);
+    margin: 0 5px;
+}
+
 .burger {
     background: none;
     border: none;
@@ -117,4 +124,5 @@
     .brandName { font-size: 1.1rem; }
     .navLinks { gap: 12px; flex-direction: column; width: 100%; }
     .navLinks li a { font-size: 0.9rem; }
+    .navDivider { width: 100%; height: 1px; margin: 4px 0; }
 }
