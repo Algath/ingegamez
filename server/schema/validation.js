@@ -7,6 +7,7 @@ export const PostSchema = new SimpleSchema({
     author: { type: String, optional: true },
     image: { type: String, optional: true },
     description: String,
+    content: { type: String, optional: true },
     slug: String,
 });
 

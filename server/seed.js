@@ -6,15 +6,6 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ingegamez'
 
 const posts = [
   {
-    title: "Jeudi 12.03.2026",
-    date: "March 11, 2026",
-    category: "Thursday Games",
-    author: "Algath",
-    image: "/posts/crack_list.png",
-    description: "🎲 Ce jeudi 12 mars, dès 16h30 : 78e IngéGamEZ ! On continue avec le...",
-    slug: "thursday-games-12-03-2026",
-  },
-  {
     title: "Jeudi 05.03.2026",
     date: "March 04, 2026",
     category: "Thursday Games",

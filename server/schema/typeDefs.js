@@ -7,6 +7,7 @@ export const typeDefs = `#graphql
     author: String!
     image: String
     description: String!
+    content: String
     slug: String!
     createdAt: String
     updatedAt: String
@@ -92,6 +93,7 @@ export const typeDefs = `#graphql
       author: String
       image: String
       description: String!
+      content: String
       slug: String!
     ): Post!
 
@@ -103,6 +105,7 @@ export const typeDefs = `#graphql
       author: String
       image: String
       description: String
+      content: String
       slug: String
     ): Post
 

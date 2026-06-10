@@ -14,6 +14,7 @@ const GET_POST = gql`
       author
       image
       description
+      content
     }
 }
 `;
@@ -76,8 +77,9 @@ function PostDetail() {
           </div>
           
           <div className={styles.content}>
-            <p>{data.post.description}</p>
-            {/* Vous pouvez ajouter du contenu supplémentaire ici */}
+            {(data.post.content || data.post.description)
+              .split('\n\n')
+              .map((para, i) => <p key={i}>{para}</p>)}
           </div>
         </article>
       </main>
