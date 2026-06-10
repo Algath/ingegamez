@@ -75,7 +75,8 @@
 
 .navDivider {
     width: 1px;
-    align-self: stretch;
+    height: 1.2em;
+    align-self: center;
     background: rgba(202, 191, 173, 0.4);
     margin: 0 5px;
 }
