@@ -51,10 +51,10 @@ function Contact() {
                 <p>Pour toutes questions ou informations, n'hésitez pas à nous contacter !</p>
                 <p>Vous pouvez nous retrouver les jeudis dès 16h30 à la Students Room ou en 21N305.</p>
                 <br />
-                <a href="mailto:ingegamez@hevs.ch">ingegamez@hevs.ch</a>
-                <a href="https://discord.gg/NakSqWHGTQ">Serveur Discord d'IngéGamEZ</a>
-                <a href="https://chat.whatsapp.com/C00MXZiPS6vIRJ9lZyJNXm">Groupe WhatsApp d'IngéGamEZ</a>
-                <a href="https://www.instagram.com/ingegamez/">@IngéGamEZ</a>
+                <p><a href="mailto:ingegamez@hevs.ch">ingegamez@hevs.ch</a></p>
+                <p><a href="https://discord.gg/NakSqWHGTQ">Serveur Discord d'IngéGamEZ</a></p>
+                <p><a href="https://chat.whatsapp.com/C00MXZiPS6vIRJ9lZyJNXm">Groupe WhatsApp d'IngéGamEZ</a></p>
+                <p><a href="https://www.instagram.com/ingegamez/">@IngéGamEZ</a></p>
                 <div id="map" style={{ height: "450px", width: "100%", borderRadius: "8px", marginTop: "20px" }} />
             </main>
             <Footer />
