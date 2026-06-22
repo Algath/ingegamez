@@ -54,11 +54,11 @@ function Navigation() {
                         <li><Link to="/pixel-lan-2025">Pixel_Lan</Link></li>
                         <li><Link to="/actuality">Actualités</Link></li>
                         <li><Link to="/gallery">Galerie</Link></li>
+                        <li><Link to="/games">Jeux</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                         {isAdmin && (
                             <>
                             <li className={styles.navDivider} aria-hidden="true"></li>
-                            <li><Link to="/games">Jeux</Link></li>
                             <li><Link to="/admin">Admin</Link></li>
                             </>
                         )}

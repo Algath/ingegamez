@@ -41,6 +41,13 @@ export const typeDefs = `#graphql
     rating: Float
   }
 
+  type BoardGameSearchResult {
+    bggId: String!
+    name: String!
+    yearPublished: Int
+    thumbnail: String
+  }
+
   type Event {
     id: ID!
     title: String!
@@ -69,6 +76,7 @@ export const typeDefs = `#graphql
     me: User
     games: [BoardGame!]!
     game(bggId: String!): BoardGame
+    searchGames(name: String!): [BoardGameSearchResult!]!
     events: [Event!]!
     galleryImages: [GalleryImage!]!
   }
@@ -113,6 +121,8 @@ export const typeDefs = `#graphql
 
     # BGG — admin uniquement
     importGame(name: String!): BoardGame!
+    importGameById(bggId: String!): BoardGame!
+    deleteGame(id: ID!): Boolean!
 
     createEvent(
       title: String!

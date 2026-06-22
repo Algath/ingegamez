@@ -3,7 +3,7 @@ import User from '../models/User.js';
 import Game from '../models/Game.js';
 import Event from '../models/Event.js';
 import { signToken, requireAdmin } from '../middleware/auth.js';
-import { fetchGameByName } from '../services/bgg.js';
+import { fetchGameByName, fetchGameById, searchGames } from '../services/bgg.js';
 import GalleryImage from '../models/GalleryImage.js';
 import { PostSchema, EventSchema, GalleryImageSchema } from './validation.js';
 
@@ -36,6 +36,10 @@ export const resolvers = {
 
     games: async () => await Game.find().sort({ name: 1 }),
     game: async (_, { bggId }) => await Game.findOne({ bggId }),
+    searchGames: async (_, { name }, context) => {
+      requireAdmin(context);
+      return await searchGames(name);
+    },
     events: async () => await Event.find().sort({ date: 1 }),
     galleryImages: async () => await GalleryImage.find().sort({ year: -1}),
   },
@@ -105,6 +109,22 @@ export const resolvers = {
         { $set: data },
         { upsert: true, new: true }
       );
+    },
+
+    importGameById: async (_, { bggId }, context) => {
+      requireAdmin(context);
+      const data = await fetchGameById(bggId);
+      return await Game.findOneAndUpdate(
+        { bggId: data.bggId },
+        { $set: data },
+        { upsert: true, new: true }
+      );
+    },
+
+    deleteGame: async (_, { id }, context) => {
+      requireAdmin(context);
+      const result = await Game.findByIdAndDelete(id);
+      return result !== null;
     },
 
     createEvent: async (_, args, context) => {
