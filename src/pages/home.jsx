@@ -13,6 +13,7 @@ const GET_LATEST_POSTS = gql`
         posts {
          id
          title
+         category
          image
          description
          slug
@@ -43,11 +44,21 @@ const GET_GALLERY = gql`
     }
 `;
 
+// "Dernières actualités" : le dernier post de chaque groupe de catégories
+const LATEST_GROUPS = [
+    ['Events', 'Pixel Jam', 'Pixel Lan'],
+    ['Thursday Games'],
+];
+
 const HomeCarousel = lazy(() => import('../components/HomeCarousel'));
 
 function Home () {
     const { data } = useQuery(GET_LATEST_POSTS);
-    const latestPosts = data?.posts?.slice(0,2) ?? [];
+    // les posts arrivent triés du plus récent au plus ancien : on prend le premier de chaque groupe
+    const posts = data?.posts ?? [];
+    const latestPosts = LATEST_GROUPS
+        .map((categories) => posts.find((p) => categories.includes(p.category)))
+        .filter(Boolean);
     const { data: eventsData } = useQuery(GET_EVENTS);
     const today = new Date().toISOString().slice(0,10);
     const upcomingEvent = (eventsData?.events ?? [])

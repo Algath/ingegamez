@@ -106,6 +106,7 @@ async function run() {
     const post = {
       title: cleanText(p.title.rendered),
       date: date.toLocaleDateString('fr-CH', { year: 'numeric', month: 'long', day: 'numeric' }),
+      publishedAt: date,
       category,
       author: 'IngéGamEZ',
       image,

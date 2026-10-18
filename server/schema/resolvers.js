@@ -4,6 +4,7 @@ import Game from '../models/Game.js';
 import Event from '../models/Event.js';
 import { signToken, requireAdmin } from '../middleware/auth.js';
 import { fetchGameByName, fetchGameById, searchGames } from '../services/bgg.js';
+import { parsePostDate } from '../services/dates.js';
 import GalleryImage from '../models/GalleryImage.js';
 import { PostSchema, EventSchema, GalleryImageSchema } from './validation.js';
 
@@ -18,7 +19,7 @@ const cookieOptions = {
 export const resolvers = {
   Query: {
     posts: async () => {
-      return await Post.find().sort({ createdAt: -1 });
+      return await Post.find().sort({ publishedAt: -1, createdAt: -1 });
     },
 
     post: async (_, { slug }) => {
@@ -26,7 +27,7 @@ export const resolvers = {
     },
 
     postsByCategory: async (_, { category }) => {
-      return await Post.find({ category }).sort({ createdAt: -1 });
+      return await Post.find({ category }).sort({ publishedAt: -1, createdAt: -1 });
     },
 
     me: async (_, __, context) => {
@@ -85,13 +86,18 @@ export const resolvers = {
 
     createPost: async (_, args, context) => {
       requireAdmin(context);
-      const post = new Post({ ...args, author: args.author ?? context.user.username });
+      const post = new Post({
+        ...args,
+        author: args.author ?? context.user.username,
+        publishedAt: parsePostDate(args.date) ?? new Date(),
+      });
       PostSchema.validate(args);
       return await post.save();
     },
 
     updatePost: async (_, { id, ...fields }, context) => {
       requireAdmin(context);
+      if (fields.date) fields.publishedAt = parsePostDate(fields.date) ?? undefined;
       return await Post.findByIdAndUpdate(id, fields, { new: true });
     },
 

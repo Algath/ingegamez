@@ -10,6 +10,12 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // version triable de `date` (qui est du texte affiché tel quel)
+    publishedAt: {
+      type: Date,
+      default: Date.now,
+      index: true,
+    },
     category: {
       type: String,
       required: true,
