@@ -35,7 +35,7 @@ export const postsData = [
     date: "January 5, 2026",
     author: "Algath",
     category: "Events",
-    image: "/src/assets/pixel_jam/pixel_jam_2026.png",
+    image: "/src/assets/pixel_jam/pixel_jam_2026.webp",
     description: "Les inscriptions pour le Pixel Jam 2026 sont ouvertes ! Venez créer un jeu vidéo...",
     slug: "pixel-jam-2026-inscriptions"
   },

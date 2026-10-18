@@ -1,8 +1,8 @@
 import Navigation from '../components/navigation';
 import Footer from '../components/footer'
 import styles from './pixel-lan.module.css'
-import pixelLan from '../assets/pixel_lan/pixel_lan_2025.jpg'
-import lanLogo from '../assets/pixel_lan/PL_rounderP_logo_2025.png'
+import pixelLan from '../assets/pixel_lan/pixel_lan_2025.webp'
+import lanLogo from '../assets/pixel_lan/PL_rounderP_logo_2025.webp'
 import homeStyles from './home.module.css'
 
 function PixelLan () {

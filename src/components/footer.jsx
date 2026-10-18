@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './footer.module.css'
-import logo from '../assets/Mascotte.png'
+import logo from '../assets/Mascotte.webp'
 import { Link } from 'react-router-dom';
 
 function Footer() {

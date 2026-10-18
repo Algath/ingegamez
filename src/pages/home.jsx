@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
-import Carousel from 'react-material-ui-carousel';
-import { Paper } from '@mui/material';
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 import styles from './home.module.css';
-import isc from '../assets/sponso/ISC.png';
-import maitre_du_jeux from '../assets/sponso/le_maitre_du_jeux.png';
+import isc from '../assets/sponso/ISC.webp';
+import maitre_du_jeux from '../assets/sponso/le_maitre_du_jeux.webp';
 import { gql } from '@apollo/client';
 import { useQuery } from '@apollo/client/react';
 
@@ -45,13 +43,7 @@ const GET_GALLERY = gql`
     }
 `;
 
-function GalleryItem({ item }) {
-    return (
-        <Paper elevation={0} className={styles.carouselItem}>
-            <img src={item.src} alt={item.caption} className={styles.carouselImage} />
-        </Paper>
-    );
-}
+const HomeCarousel = lazy(() => import('../components/HomeCarousel'));
 
 function Home () {
     const { data } = useQuery(GET_LATEST_POSTS);
@@ -96,11 +88,9 @@ function Home () {
                     <div className={styles.contentOverlay}>
                         <h2>Galerie</h2>
                         <p>Découvrez les moments forts de nos événements</p>
-                        <Carousel>
-                            {galleryImages.map((img) => (
-                                <GalleryItem key={img.id} item={{src: img.url, caption: img.alt || img.category }} />
-                            ))}
-                        </Carousel>
+                        <Suspense fallback={null}>
+                            <HomeCarousel images={galleryImages} />
+                        </Suspense>
                     </div>
                 </section>
 

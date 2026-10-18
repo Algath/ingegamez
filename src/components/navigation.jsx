@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from './navigation.module.css'
-import logo from '../assets/Mascotte.png'
+import logo from '../assets/Mascotte.webp'
 import { Link, useNavigate } from 'react-router-dom';
 import { useBreakpoints } from '../hooks/useBreakpoints';
 import { gql } from '@apollo/client';

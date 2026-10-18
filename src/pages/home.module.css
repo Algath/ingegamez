@@ -1,7 +1,7 @@
 /* ===== Home Page ===== */
 .home {
     background-color: #0a0a0a;
-    background-image: url('../assets/Mascotte.png');
+    background-image: url('../assets/Mascotte.webp');
     background-attachment: fixed;
     background-size: cover;
     background-position: center +15%;
