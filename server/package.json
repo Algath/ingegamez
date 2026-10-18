@@ -24,6 +24,7 @@
     "passport-jwt": "^4.0.1",
     "present": "^1.0.0",
     "scripts": "^0.1.0",
+    "sharp": "^0.35.5",
     "simpl-schema": "^3.4.7",
     "xml2js": "^0.6.2"
   },

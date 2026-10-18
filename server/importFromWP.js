@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import Post from './models/Post.js';
+import { toWebp, webpName } from './services/images.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_POSTS = path.join(__dirname, '../public/posts');
@@ -11,9 +12,10 @@ const PUBLIC_POSTS = path.join(__dirname, '../public/posts');
 const WP = 'https://ingegamez.isc-vs.ch/?rest_route=/wp/v2';
 const CATEGORY_MAP = { 9: 'Thursday Games', 10: 'Events', 11: 'Pixel Jam', 31: 'Pixel Lan' };
 const CATEGORY_PRIORITY = [11, 31, 10, 9]; // Pixel Jam / Pixel Lan / Events / Thursday Games (du + spécifique au + générique)
-const FALLBACK_IMAGE = { 'Pixel Jam': '/posts/pixel_jam_2026.png' }; // si l'image est protégée côté API WP
-const MONTHS_BACK = 3;          // on importe les posts des N derniers mois
-const PER_PAGE = 30;
+const FALLBACK_IMAGE = { 'Pixel Jam': '/posts/pixel_jam_2026.webp' }; // si l'image est protégée côté API WP
+// date de début optionnelle : node importFromWP.js 2026-06-01 (par défaut : tout le site)
+const SINCE = process.argv[2] ? new Date(process.argv[2]) : null;
+const PER_PAGE = 100;
 
 // --- helpers -----------------------------------------------------------
 function slugify(str) {
@@ -60,8 +62,11 @@ async function downloadImage(url) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Image ${url} → ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
-  const filename = path.basename(new URL(url).pathname);
-  fs.writeFileSync(path.join(PUBLIC_POSTS, filename), buf);
+  // WP réutilise les mêmes noms (image.png…) d'un mois à l'autre → préfixe AAAA-MM
+  const pathname = decodeURIComponent(new URL(url).pathname);
+  const ym = pathname.match(/\/uploads\/(\d{4})\/(\d{2})\//);
+  const filename = webpName((ym ? `${ym[1]}-${ym[2]}-` : '') + path.basename(pathname));
+  fs.writeFileSync(path.join(PUBLIC_POSTS, filename), await toWebp(buf));
   return `/posts/${filename}`;
 }
 
@@ -72,21 +77,19 @@ async function run() {
   console.log('MongoDB connecté');
   fs.mkdirSync(PUBLIC_POSTS, { recursive: true });
 
-  // repart propre : retire les posts déjà importés du site officiel (marqueur author),
-  // sans toucher au seed ni aux posts créés via l'admin
-  const removed = await Post.deleteMany({ author: 'IngéGamEZ' });
-  console.log(`(${removed.deletedCount} ancien(s) post(s) importé(s) supprimé(s))`);
-
-  const cutoff = new Date();
-  cutoff.setMonth(cutoff.getMonth() - MONTHS_BACK);
-
-  const res = await fetch(`${WP}/posts&per_page=${PER_PAGE}&_embed`);
-  const posts = await res.json();
+  // upsert par slug : les posts existants sont mis à jour, rien n'est supprimé
+  const posts = [];
+  for (let page = 1; ; page++) {
+    const res = await fetch(`${WP}/posts&per_page=${PER_PAGE}&page=${page}&_embed`);
+    if (!res.ok) throw new Error(`API WP → ${res.status}`);
+    posts.push(...await res.json());
+    if (page >= Number(res.headers.get('x-wp-totalpages') || 1)) break;
+  }
   let imported = 0;
 
   for (const p of posts) {
     const date = new Date(p.date);
-    if (date < cutoff) continue;   // hors fenêtre (N derniers mois)
+    if (SINCE && date < SINCE) continue;
 
     const catId = CATEGORY_PRIORITY.find((id) => (p.categories || []).includes(id));
     const category = CATEGORY_MAP[catId] || 'Thursday Games';

@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import GalleryImage from './models/GalleryImage.js';
+import { toWebp, webpName } from './services/images.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_GALLERY = path.join(__dirname, '../public/gallery');
@@ -40,8 +41,8 @@ async function downloadImage(url) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`${url} → ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
-  const filename = path.basename(new URL(url).pathname);
-  fs.writeFileSync(path.join(PUBLIC_GALLERY, filename), buf);
+  const filename = webpName(path.basename(new URL(url).pathname));
+  fs.writeFileSync(path.join(PUBLIC_GALLERY, filename), await toWebp(buf));
   return `/gallery/${filename}`;
 }
 
